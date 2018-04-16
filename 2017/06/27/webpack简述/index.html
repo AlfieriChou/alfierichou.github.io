@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>webpack简述 - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言 现在仔细想想亚信的面试，结果发现，整个前端涵盖的所有知识都问了一遍。虽然，进不了他们公司，但是，给我是留下了极大的导向作用。挺感谢这三位面试官的。">
+<meta name="keywords" content="webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack简述">
+<meta property="og:url" content="http://github.com/AlfieriChou/2017/06/27/webpack简述/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="前言 现在仔细想想亚信的面试，结果发现，整个前端涵盖的所有知识都问了一遍。虽然，进不了他们公司，但是，给我是留下了极大的导向作用。挺感谢这三位面试官的。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-06-28T08:06:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack简述">
+<meta name="twitter:description" content="前言 现在仔细想想亚信的面试，结果发现，整个前端涵盖的所有知识都问了一遍。虽然，进不了他们公司，但是，给我是留下了极大的导向作用。挺感谢这三位面试官的。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-webpack简述" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      webpack简述
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/06/27/webpack简述/" class="article-date">
+  <time datetime="2017-06-27T10:41:36.000Z" itemprop="datePublished">2017-06-27</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>现在仔细想想亚信的面试，结果发现，整个前端涵盖的所有知识都问了一遍。虽然，进不了他们公司，但是，给我是留下了极大的导向作用。挺感谢这三位面试官的。</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>废话不说了，来写写webpack吧！</li>
+</ul>
+<h3 id="webpack是什么？"><a href="#webpack是什么？" class="headerlink" title="webpack是什么？"></a>webpack是什么？</h3><p>webpack是一个前端打包工具，希望解决前端工程中静态资源发版前的打包问题。以JavaScript作为载体，引入前端项目以来的模块，最终通过webpack打包成浏览器支持的文件。</p>
+<h3 id="grunt和gulp"><a href="#grunt和gulp" class="headerlink" title="grunt和gulp"></a>grunt和gulp</h3><p>Grunt和gulp主要用于将sass编译，图片压缩，js压缩，hash文件名等工作编成不同的任务，最后顺序执行。</p>
+<h3 id="gulp和webpack的核心说明"><a href="#gulp和webpack的核心说明" class="headerlink" title="gulp和webpack的核心说明"></a>gulp和webpack的核心说明</h3><p>Webpack的核心在于静态资源打包。而gulp的核心在于任务集成。</p>
+<h3 id="webpack核心"><a href="#webpack核心" class="headerlink" title="webpack核心"></a>webpack核心</h3><p>浏览器支持的静态资源是有限的，webpack旨在让项目中的静态资源都能得到支持。然而webpack只能识别JavaScript，所有的文件（包含html,jpg,sass,）都作为模块。</p>
+<h3 id="webpack的入口——entry"><a href="#webpack的入口——entry" class="headerlink" title="webpack的入口——entry"></a>webpack的入口——entry</h3><p>Webpack通过js创建项目中所有静态资源的依赖映像。entry定义了webpack打包的入口文件。<br>下面以vue.js项目为例子说明<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">    app: <span class="string">'./src/main.js'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="webpack的输出目录——output"><a href="#webpack的输出目录——output" class="headerlink" title="webpack的输出目录——output"></a>webpack的输出目录——output</h3><p>Output定义了webpack打包文件的处理方式，output配置指定了打包文件的输出目录（output.path），文件名（output.filename）。<br>下面以vue.js项目为例子说明<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">    path: config.build.assetsRoot,</span><br><span class="line">    publicPath: process.env.NODE_ENV === <span class="string">'production'</span> ? config.build.assetsPublicPath : config.dev.assetsPublicPath,</span><br><span class="line">    filename: <span class="string">'[name].js'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="webpack的自定义功能——plugin"><a href="#webpack的自定义功能——plugin" class="headerlink" title="webpack的自定义功能——plugin"></a>webpack的自定义功能——plugin</h3><p> plugin为webpack提供了更多的自定义功能<br>下面以vue.js项目为例子说明<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">    <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</span><br><span class="line">        $: <span class="string">"jquery"</span>,</span><br><span class="line">        jQuery: <span class="string">"jquery"</span></span><br><span class="line">    &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/28/javascript要注意的问题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          javascript要注意的问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/06/25/数组去重/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数组去重&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=O23IwUQBGiCNXl2N7qwt0rIwuuNlONPsTXUaErsj7Ie_7GWLgXpe!2105743534" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

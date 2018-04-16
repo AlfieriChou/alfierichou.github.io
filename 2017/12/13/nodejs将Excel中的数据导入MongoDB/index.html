@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>nodejs将Excel中的数据导入MongoDB - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言 Excel中的数据批量导入到MongoDB中。">
+<meta name="keywords" content="node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nodejs将Excel中的数据导入MongoDB">
+<meta property="og:url" content="http://github.com/AlfieriChou/2017/12/13/nodejs将Excel中的数据导入MongoDB/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="前言 Excel中的数据批量导入到MongoDB中。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-12-13T06:32:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nodejs将Excel中的数据导入MongoDB">
+<meta name="twitter:description" content="前言 Excel中的数据批量导入到MongoDB中。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-nodejs将Excel中的数据导入MongoDB" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      nodejs将Excel中的数据导入MongoDB
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/12/13/nodejs将Excel中的数据导入MongoDB/" class="article-date">
+  <time datetime="2017-12-13T06:18:42.000Z" itemprop="datePublished">2017-12-13</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node-js/">node.js</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li>Excel中的数据批量导入到MongoDB中。</li>
+</ul>
+<a id="more"></a>
+<ol>
+<li><p>环境</p>
+<ul>
+<li>node.js</li>
+<li>MongoDB</li>
+<li>Excel</li>
+<li>npm</li>
+</ul>
+</li>
+<li><p>准备动作</p>
+<ul>
+<li>在Excel中写入1000条模拟数据，第一行为username，第二行为user，第三行为description</li>
+<li>数据暂时不考虑复杂情况</li>
+</ul>
+</li>
+<li><p>需要的公用模块库</p>
+<ul>
+<li>mongoose</li>
+<li>node-xlsx</li>
+<li>express</li>
+<li>fs</li>
+</ul>
+</li>
+<li><p>最近事多，废话少说。直接上关键代码</p>
+<ul>
+<li>Schema和连接MongoDB那些就不写了，慢慢去整。</li>
+<li><p>例如：这里需要导入的是用户表，需要导入的对象有username，user，description</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = xlsx.parse(__dirname+<span class="string">'/users.xlsx'</span>);</span><br><span class="line"><span class="keyword">let</span> excelObj = obj[<span class="number">0</span>].data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>; i&lt;excelObj.length; i++)&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> value = excelObj[i];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> data = <span class="built_in">eval</span>(value);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> username = [];</span><br><span class="line">    username.push(data[<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> name = [];</span><br><span class="line">    name.push(data[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> description = [];</span><br><span class="line">    description.push(data[<span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> puwen = <span class="keyword">new</span> Puwen(&#123;</span><br><span class="line">        username: username,</span><br><span class="line">        name: name,</span><br><span class="line">        description: description</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    puwen.save();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/14/查询MongoDB中的值为空和不为空/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          查询MongoDB中的值为空和不为空
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/13/nodejs将MongoDB中的数据导出到Excel/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">nodejs将MongoDB中的数据导出到Excel&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=O23IwUQBGiCNXl2N7qwt0rIwuuNlONPsTXUaErsj7Ie_7GWLgXpe!2105743534" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

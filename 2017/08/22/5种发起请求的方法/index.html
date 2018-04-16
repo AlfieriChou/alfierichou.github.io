@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>5种发起请求的方法 - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="HTTP - 标准库 首先是标准库中默认的HTTP模块。这个模块无需安装依赖外部即可使用，做到了真正的即插即用。缺点是与其他解决方案相比，用起来不是那么友好。">
+<meta name="keywords" content="http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="5种发起请求的方法">
+<meta property="og:url" content="http://github.com/AlfieriChou/2017/08/22/5种发起请求的方法/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="HTTP - 标准库 首先是标准库中默认的HTTP模块。这个模块无需安装依赖外部即可使用，做到了真正的即插即用。缺点是与其他解决方案相比，用起来不是那么友好。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-08-22T02:47:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="5种发起请求的方法">
+<meta name="twitter:description" content="HTTP - 标准库 首先是标准库中默认的HTTP模块。这个模块无需安装依赖外部即可使用，做到了真正的即插即用。缺点是与其他解决方案相比，用起来不是那么友好。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-5种发起请求的方法" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      5种发起请求的方法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/08/22/5种发起请求的方法/" class="article-date">
+  <time datetime="2017-08-22T02:46:30.000Z" itemprop="datePublished">2017-08-22</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/http/">http</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="HTTP-标准库"><a href="#HTTP-标准库" class="headerlink" title="HTTP - 标准库"></a>HTTP - 标准库</h3><ul>
+<li>首先是标准库中默认的HTTP模块。这个模块无需安装依赖外部即可使用，做到了真正的即插即用。缺点是与其他解决方案相比，用起来不是那么友好。</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>下面的代码将向NASA的API发送一个GET请求，并输出当天的天文照片的URL，以及它的注解:</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> https = <span class="built_in">require</span>(<span class="string">'https'</span>);</span><br><span class="line"> </span><br><span class="line">https.get(<span class="string">'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY'</span>, (resp) =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> data = <span class="string">''</span>;</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// A chunk of data has been recieved.</span></span><br><span class="line">  resp.on(<span class="string">'data'</span>, (chunk) =&gt; &#123;</span><br><span class="line">    data += chunk;</span><br><span class="line">  &#125;);</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// The whole response has been received. Print out the result.</span></span><br><span class="line">  resp.on(<span class="string">'end'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.parse(data).explanation);</span><br><span class="line">  &#125;);</span><br><span class="line"> </span><br><span class="line">&#125;).on(<span class="string">"error"</span>, (err) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Error: "</span> + err.message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>HTTP和HTTPS模块提供的大多数功能是相当有限的。你需要以区块为单位接收响应数据，而不是只提供一个回调函数，以便在收到所有数据后就立即执行。如果它是JSON格式你还需要进行手动解析。尽管工作量不大，但是它仍然会带来一些不必要的操作。</p>
+</li>
+<li><p>另一个麻烦是，HTTP和HTTPS协议分属两个模块，因此如果我们使用的API是通过HTTPS协议进行通信，则需要HTTPS模块。</p>
+</li>
+<li><p>如果你不想向代码库中添加太多的依赖项或希望使用其底层的功能, 那么可能需要花费更多的精力来获取所需的数据, 尽管如此，但是它仍然是一个很好的工具。</p>
+</li>
+</ul>
+<h3 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h3><ul>
+<li><p>Request是一个简化的http客户端，它和Python的request库很像。这个库比默认的http 模块更好用，多年来被开源社区作为开发首选。</p>
+</li>
+<li><p>自从我开始使用Node.js就一直在用，他对快速完成开发任务很有帮助。与http 模块不同的是，你必须使用npm来安装它。</p>
+</li>
+<li><p>在终端下进入到你想要代码被下载的目录中，运行以下命令：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install request@2.81.0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以看到，不需要写太多代码就能完成前面的功能：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> request = <span class="built_in">require</span>(<span class="string">'request'</span>);</span><br><span class="line"> </span><br><span class="line">request(<span class="string">'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY'</span>, &#123; <span class="attr">json</span>: <span class="literal">true</span> &#125;, (err, res, body) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123; <span class="keyword">return</span> <span class="built_in">console</span>.log(err); &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(body.url);</span><br><span class="line">  <span class="built_in">console</span>.log(body.explanation);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果你想要一个使用正常方式处理HTTP请求的苦，那么Request是一个很好的选择。如果你想使用Promises，也可以签出request-promise库。</li>
+</ul>
+<h3 id="Axios"><a href="#Axios" class="headerlink" title="Axios"></a>Axios</h3><ul>
+<li><p>Axios是一个基于promise的HTTP客户端，可以用于浏览器和Node.js。在处理需要更复杂的事件链的代码时，使用Promises具有很大的优势。 编写异步代码可能会令人困惑，而Promises是这个问题的几种解决方案之一。 它们甚至被用在其它语言中，比如Swift。</p>
+</li>
+<li><p>使用npm安装Axios，在终端中输入以下命令：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install axios@0.16.2</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下面的代码实现相同的功能，得到URL并解释当天的天文学图片。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">'axios'</span>);</span><br><span class="line"> </span><br><span class="line">axios.get(<span class="string">'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY'</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(response.data.url);</span><br><span class="line">    <span class="built_in">console</span>.log(response.data.explanation);</span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(error);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>默认情况下，Axios可以解析JSON响应，非常方便。你也可以看到错误处理是由.catch()完成的，现在我们都在使用 promises。</p>
+</li>
+<li><p>你甚至可以通过axios.all发起多个并发请求，比如说你想一次性得到两天的天文图片可以这样做：</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> axios = <span class="built_in">require</span>(<span class="string">'axios'</span>);</span><br><span class="line"> </span><br><span class="line">axios.all([</span><br><span class="line">  axios.get(<span class="string">'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&amp;date=2017-08-03'</span>),</span><br><span class="line">  axios.get(<span class="string">'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&amp;date=2017-08-02'</span>)</span><br><span class="line">]).then(axios.spread(<span class="function">(<span class="params">response1, response2</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(response1.data.url);</span><br><span class="line">  <span class="built_in">console</span>.log(response2.data.url);</span><br><span class="line">&#125;)).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>异步代码很容易地变得十分复杂并且不容易处理, Axios很轻松的解决了这个问题，从长远看来可以使你的开发工作变得轻松。</li>
+</ul>
+<h3 id="SuperAgent"><a href="#SuperAgent" class="headerlink" title="SuperAgent"></a>SuperAgent</h3><ul>
+<li>与Axios类似，SuperAgent 是另一个流行的库，主要用于浏览器中的Ajax请求，但也适用于Node.js。使用以下命令安装SuperAgent :</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install superagent@3.5.2</span><br></pre></td></tr></table></figure>
+<ul>
+<li>SuperAgent最酷的地方是能进行链式调用，你可以把其它函数链到像query()这样的请求上，并且添加参数。在前面的例子中我们都是手动添加它们。请注意 SuperAgent 是怎样提供这种功能的:</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> superagent = <span class="built_in">require</span>(<span class="string">'superagent'</span>);</span><br><span class="line"> </span><br><span class="line">superagent.get(<span class="string">'https://api.nasa.gov/planetary/apod'</span>)</span><br><span class="line">.query(&#123; <span class="attr">api_key</span>: <span class="string">'DEMO_KEY'</span>, <span class="attr">date</span>: <span class="string">'2017-08-02'</span> &#125;)</span><br><span class="line">.end(<span class="function">(<span class="params">err, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) &#123; <span class="keyword">return</span> <span class="built_in">console</span>.log(err); &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(res.body.url);</span><br><span class="line">  <span class="built_in">console</span>.log(res.body.explanation);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>和axios一样，你也不用自己解析去JSON响应，这非常酷。</li>
+</ul>
+<h3 id="Got"><a href="#Got" class="headerlink" title="Got"></a>Got</h3><ul>
+<li><p>如果你想用一个更轻量级的库，Got是另外一个选择。它也可用于Twilio Functions。</p>
+</li>
+<li><p>再来一遍，实用npm安装Got：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install got@7.1.0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>和Axios一样，Got也能同Promises一起很好的工作。下面的代码做的事情和前面的例子一样：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> got = <span class="built_in">require</span>(<span class="string">'got'</span>);</span><br><span class="line"> </span><br><span class="line">got(<span class="string">'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY'</span>, &#123; <span class="attr">json</span>: <span class="literal">true</span> &#125;).then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(response.body.url);</span><br><span class="line">  <span class="built_in">console</span>.log(response.body.explanation);</span><br><span class="line">&#125;).catch(<span class="function"><span class="params">error</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(error.response.body);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/26/Async-Await替代Promise/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          Async/Await替代Promise
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/16/远程主机用ssh连接遇到真实性检查以及解决方案/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">远程主机用ssh连接遇到真实性检查以及解决方案&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=O23IwUQBGiCNXl2N7qwt0rIwuuNlONPsTXUaErsj7Ie_7GWLgXpe!2105743534" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

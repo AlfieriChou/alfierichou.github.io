@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>块级作用域 - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="看了别人写的作用域理解，我觉得这样的解释就是我所想要的。123456789101112131415&amp;lt;body&amp;gt;    &amp;lt;ul&amp;gt;        &amp;lt;li&amp;gt;0&amp;lt;/li&amp;gt;        &amp;lt;li&amp;gt;1&amp;lt;/li&amp;gt;        &amp;lt;li&amp;gt;2&amp;lt;/li&amp;gt;    &amp;lt;/ul&amp;gt;    &amp;lt;script&amp;gt;">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="块级作用域">
+<meta property="og:url" content="http://github.com/AlfieriChou/2017/04/24/块级作用域/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="看了别人写的作用域理解，我觉得这样的解释就是我所想要的。123456789101112131415&amp;lt;body&amp;gt;    &amp;lt;ul&amp;gt;        &amp;lt;li&amp;gt;0&amp;lt;/li&amp;gt;        &amp;lt;li&amp;gt;1&amp;lt;/li&amp;gt;        &amp;lt;li&amp;gt;2&amp;lt;/li&amp;gt;    &amp;lt;/ul&amp;gt;    &amp;lt;script&amp;gt;">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-11T02:28:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="块级作用域">
+<meta name="twitter:description" content="看了别人写的作用域理解，我觉得这样的解释就是我所想要的。123456789101112131415&amp;lt;body&amp;gt;    &amp;lt;ul&amp;gt;        &amp;lt;li&amp;gt;0&amp;lt;/li&amp;gt;        &amp;lt;li&amp;gt;1&amp;lt;/li&amp;gt;        &amp;lt;li&amp;gt;2&amp;lt;/li&amp;gt;    &amp;lt;/ul&amp;gt;    &amp;lt;script&amp;gt;">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-块级作用域" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      块级作用域
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/04/24/块级作用域/" class="article-date">
+  <time datetime="2017-04-24T02:29:27.000Z" itemprop="datePublished">2017-04-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>看了别人写的作用域理解，我觉得这样的解释就是我所想要的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;0&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        var node = document.querySelectorAll(&apos;ul li&apos;)</span><br><span class="line">        for(var i = 0;i&lt;node.length;i++)&#123;</span><br><span class="line">            node[i].addEventListener(&apos;click&apos;,function()&#123;</span><br><span class="line">                alert(&apos;click&apos;+i)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>var 没有块级作用域导进的最后输出无论你点那个li，输出的都是3。<br>正是因为没有块级作用用域导致，最后循环出来每个事件输出的都是全局i，那因为循环跳出结束，最后结果就等于3，这个道理很明白，那我们怎么去解决这个办法，我们把这三个办法都玩一下，都是一种渐进行的方法。</p>
+<p>从闭包 —-&gt; es5 forEach —–&gt; es6 let</p>
+<p>1.闭包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;0&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        var node = document.querySelectorAll(&apos;ul li&apos;)</span><br><span class="line">        for(var i = 0;i&lt;node.length;i++)&#123;</span><br><span class="line">            (function(i)&#123;</span><br><span class="line">                node[i].addEventListener(&apos;click&apos;,function()&#123;</span><br><span class="line">                    alert(&apos;click&apos;+i)</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;)(i)</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+<p>我们在绑定事件外层，在循环体内层加了一个自执行函数，大家对这个都不陌生在common.js没有广泛推出来的时候，无论任何框架，为了防止全局变量名的污染，都用这个玩意，此时就行成了一个闭包，每循环一次，都进行一次传参，此时的每个i都是一个自执行函数体内自己的作用域</p>
+<p>2.forEach方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;0&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        var node = document.querySelectorAll(&apos;ul li&apos;)</span><br><span class="line">        Array.from(node).forEach(function(nodeItem,index)&#123;</span><br><span class="line">            nodeItem.addEventListener(&apos;click&apos;,function()&#123;</span><br><span class="line">                alert(&apos;click&apos;+index)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这里用forEach也行成了一个所谓的闭包，forEach里的执行函数也行成了一个闭包，每个执行体里，index都是一局部作用域，那为什么用array,from呢，我们也可以用[].slice.call(node)我们类数组对象转化成真正的数组，因为有些低版本的浏览器不支持摆了。</p>
+<p>3.es6<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;0&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        var node = document.querySelectorAll(&apos;ul li&apos;)</span><br><span class="line">    	for(let i = 0;i&lt;node.length;i++)&#123;</span><br><span class="line">       		node[i].addEventListener(&apos;click&apos;,function()&#123;</span><br><span class="line">          	alert(&apos;click&apos;+i)</span><br><span class="line">       		&#125;)</span><br><span class="line">    	&#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+<p>由于es6添加了let和const，从而引进了块级作用域。用let来声明一个值会被改变的变量，而使用const来声明一个值不会被改变的变量（常量）。</p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/24/分享10个前端面试题-第一波/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          分享10个前端面试题-第一波
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/23/http状态码/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">http状态响应码&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=O23IwUQBGiCNXl2N7qwt0rIwuuNlONPsTXUaErsj7Ie_7GWLgXpe!2105743534" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

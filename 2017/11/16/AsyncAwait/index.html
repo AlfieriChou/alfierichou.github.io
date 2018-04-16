@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>AsyncAwait简述 - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言今天被Promise坑了，直到我引入了async才完美的解决这个问题">
+<meta name="keywords" content="es7">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AsyncAwait简述">
+<meta property="og:url" content="http://github.com/AlfieriChou/2017/11/16/AsyncAwait/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="前言今天被Promise坑了，直到我引入了async才完美的解决这个问题">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-11-16T14:54:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AsyncAwait简述">
+<meta name="twitter:description" content="前言今天被Promise坑了，直到我引入了async才完美的解决这个问题">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-AsyncAwait" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AsyncAwait简述
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/11/16/AsyncAwait/" class="article-date">
+  <time datetime="2017-11-16T14:48:49.000Z" itemprop="datePublished">2017-11-16</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/es7/">es7</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><pre><code>今天被Promise坑了，直到我引入了async才完美的解决这个问题
+</code></pre><a id="more"></a>
+<h4 id="1、什么是-Async-Await？"><a href="#1、什么是-Async-Await？" class="headerlink" title="1、什么是 Async/Await？"></a>1、什么是 Async/Await？</h4><p>Async - 定义异步函数(<code>async function someName(){...}</code>)</p>
+<ul>
+<li>自动把函数转换为 Promise</li>
+<li>当调用异步函数时，函数返回值会被 resolve 处理</li>
+<li>异步函数内部可以使用 <code>await</code></li>
+</ul>
+<p>Await - 暂停异步函数的执行 (<code>var result = await someAsyncCall();</code>)</p>
+<ul>
+<li>当使用在 Promise 前面时，<code>await</code> 等待 Promise 完成，并返回 Promise 的结果</li>
+<li><code>await</code> <strong>只能</strong>和 Promise 一起使用，<strong>不能</strong>和 callback 一起使用</li>
+<li><code>await</code> 只能用在 <code>async</code> 函数中</li>
+</ul>
+<h4 id="2、Async-Await-是否会取代-Promise"><a href="#2、Async-Await-是否会取代-Promise" class="headerlink" title="2、Async/Await 是否会取代 Promise"></a>2、Async/Await 是否会取代 Promise</h4><p>不会。</p>
+<ul>
+<li>Async/Await 底层依然使用了 Promise。</li>
+<li>多个异步函数同时执行时，需要借助 <code>Promise.all</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getABC</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> A = <span class="keyword">await</span> getValueA(); <span class="comment">// getValueA 花费 2 秒</span></span><br><span class="line">  <span class="keyword">let</span> B = <span class="keyword">await</span> getValueB(); <span class="comment">// getValueA 花费 4 秒</span></span><br><span class="line">  <span class="keyword">let</span> C = <span class="keyword">await</span> getValueC(); <span class="comment">// getValueA 花费 3 秒</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> A*B*C;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>每次遇到 <code>await</code> 关键字时，Promise 都会停下在，一直到运行结束，所以总共花费是 2+4+3 = 9 秒。<strong><code>await</code> 把异步变成了同步</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getABC</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Promise.all() 允许同时执行所有的异步函数</span></span><br><span class="line">  <span class="keyword">let</span> results = <span class="keyword">await</span> <span class="built_in">Promise</span>.all([ getValueA, getValueB, getValueC ]); </span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> results.reduce(<span class="function">(<span class="params">total, value</span>) =&gt;</span> total * value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>函数总耗时为 4 秒（<code>getValueB</code> 的耗时）。</p>
+<h4 id="3、Async-Await-的错误处理"><a href="#3、Async-Await-的错误处理" class="headerlink" title="3、Async/Await 的错误处理"></a>3、Async/Await 的错误处理</h4><p>在 Async/Await 语法中，我们可以使用 try/catch 进行错误处理。在 Promise 中的 <code>.catch()</code> 分支会进入 <code>catch</code> 语句。 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="comment">//一顿瞎几把操作得到value</span></span><br><span class="line">		resolve(value);</span><br><span class="line">	</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">let</span> value = <span class="keyword">await</span> get();</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es7/">es7</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/23/nginx配置方向代理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          nginx配置反向代理绑定二级域名
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/19/CentOS安装配置Nginx/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CentOS安装配置Nginx&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=O23IwUQBGiCNXl2N7qwt0rIwuuNlONPsTXUaErsj7Ie_7GWLgXpe!2105743534" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ES6的import和export - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.export: 变量导出 不同位置js文件变量交互12345678910在a.js中定义2个变量var name = &apos;AlfieriChou&apos;var age = &quot;20&quot;name我们在b.js中如何使用到这两个定义好的变量呢？这时，我们只需要在a.js中添加exportvar name = &apos;AlfieriChou&apos;var age = &quot;20&quot;//添加以下代码export &amp;#123;nam">
+<meta name="keywords" content="es6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6的import和export">
+<meta property="og:url" content="http://github.com/AlfieriChou/2017/05/21/ES6的import和export/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="1.export: 变量导出 不同位置js文件变量交互12345678910在a.js中定义2个变量var name = &apos;AlfieriChou&apos;var age = &quot;20&quot;name我们在b.js中如何使用到这两个定义好的变量呢？这时，我们只需要在a.js中添加exportvar name = &apos;AlfieriChou&apos;var age = &quot;20&quot;//添加以下代码export &amp;#123;nam">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-06-28T08:05:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6的import和export">
+<meta name="twitter:description" content="1.export: 变量导出 不同位置js文件变量交互12345678910在a.js中定义2个变量var name = &apos;AlfieriChou&apos;var age = &quot;20&quot;name我们在b.js中如何使用到这两个定义好的变量呢？这时，我们只需要在a.js中添加exportvar name = &apos;AlfieriChou&apos;var age = &quot;20&quot;//添加以下代码export &amp;#123;nam">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-ES6的import和export" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ES6的import和export
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/05/21/ES6的import和export/" class="article-date">
+  <time datetime="2017-05-21T01:03:15.000Z" itemprop="datePublished">2017-05-21</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/es6/">es6</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.export: 变量导出 不同位置js文件变量交互<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">在a.js中定义<span class="number">2</span>个变量</span><br><span class="line"><span class="keyword">var</span> name = <span class="string">'AlfieriChou'</span></span><br><span class="line"><span class="keyword">var</span> age = <span class="string">"20"</span></span><br><span class="line">name我们在b.js中如何使用到这两个定义好的变量呢？</span><br><span class="line">这时，我们只需要在a.js中添加<span class="keyword">export</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">'AlfieriChou'</span></span><br><span class="line"><span class="keyword">var</span> age = <span class="string">"20"</span></span><br><span class="line"><span class="comment">//添加以下代码</span></span><br><span class="line"><span class="keyword">export</span> &#123;name,age&#125;</span><br><span class="line">这样在b.js中就能使用了</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>2.import 使用导出的变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;name,age&#125; <span class="keyword">from</span> <span class="string">"./a.js"</span></span><br><span class="line"><span class="built_in">console</span>.log(name) <span class="comment">//AlfieriChou</span></span><br><span class="line"><span class="built_in">console</span>.log(age) <span class="comment">//20</span></span><br></pre></td></tr></table></figure></p>
+<p>3.变量导出导入方案<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">普通导出<span class="keyword">export</span> &#123;name,age&#125;</span><br><span class="line">-- 使用的时候必须指定name和age:即<span class="keyword">import</span> &#123;name,age&#125; <span class="keyword">from</span> <span class="string">"./a.js"</span></span><br><span class="line">-- 如果在b.js中使用的时候不想使用name和age，想用your1_name或your_age2来接受  </span><br><span class="line">    a.js中的<span class="number">2</span>个变量怎么办？</span><br><span class="line">-- 使用默认导出</span><br><span class="line">默认导出 <span class="keyword">export</span> <span class="keyword">default</span> 只支持一个变量导出  </span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> name</span><br><span class="line">-- 使用的时候 <span class="keyword">import</span> any <span class="keyword">from</span> <span class="string">"./a.js"</span>  </span><br><span class="line">-- any可以任意起名  </span><br><span class="line">-- <span class="built_in">console</span>.log(any)<span class="comment">//AlfieriChou</span></span><br><span class="line">批量导出a.js  </span><br><span class="line">-- <span class="keyword">export</span> <span class="keyword">const</span> name = <span class="string">'AlfieriChou'</span></span><br><span class="line">-- <span class="keyword">export</span> <span class="keyword">const</span> age = <span class="string">'20'</span></span><br><span class="line">批量导入b.js  </span><br><span class="line">-- <span class="keyword">import</span> * <span class="keyword">as</span> types <span class="keyword">from</span> <span class="string">'a.js'</span></span><br><span class="line">使用types对象封装a.js中所有<span class="keyword">export</span>的变量  </span><br><span class="line"><span class="keyword">export</span>中变量的定义名字是types对象的属性  </span><br><span class="line"><span class="keyword">export</span>中改变量的对应的数值是types对象的改属性的数值</span><br><span class="line"><span class="built_in">console</span>.log(type)<span class="comment">//&#123;name:'AlfieriChou',age:'20' &#125;</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/21/ES6箭头函数/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          ES6箭头函数
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/21/ES6类、属性和方法定义/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ES6类、属性和方法定义&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=O23IwUQBGiCNXl2N7qwt0rIwuuNlONPsTXUaErsj7Ie_7GWLgXpe!2105743534" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

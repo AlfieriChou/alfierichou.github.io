@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>淘宝镜像问题 - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言好久没开发了！今天去clone别人一个项目，结果发现淘宝镜像已经不能clone别人项目了，直接报错。">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="淘宝镜像问题">
+<meta property="og:url" content="http://github.com/AlfieriChou/2017/07/21/淘宝镜像问题/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="前言好久没开发了！今天去clone别人一个项目，结果发现淘宝镜像已经不能clone别人项目了，直接报错。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-07-21T12:54:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="淘宝镜像问题">
+<meta name="twitter:description" content="前言好久没开发了！今天去clone别人一个项目，结果发现淘宝镜像已经不能clone别人项目了，直接报错。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-淘宝镜像问题" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      淘宝镜像问题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/07/21/淘宝镜像问题/" class="article-date">
+  <time datetime="2017-07-21T12:44:04.000Z" itemprop="datePublished">2017-07-21</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/git/">git</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>好久没开发了！今天去clone别人一个项目，结果发现淘宝镜像已经不能clone别人项目了，直接报错。</p>
+<a id="more"></a>
+<h4 id="先上图，看看什么情况"><a href="#先上图，看看什么情况" class="headerlink" title="先上图，看看什么情况"></a>先上图，看看什么情况</h4><p>![图片描述][<a href="http://alfierichou1-1253852921.cosgz.myqcloud.com/git%E9%97%AE%E9%A2%98%E6%8A%A5%E9%94%99%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3/error.png]" target="_blank" rel="noopener">http://alfierichou1-1253852921.cosgz.myqcloud.com/git%E9%97%AE%E9%A2%98%E6%8A%A5%E9%94%99%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3/error.png]</a><br>带着这个报错信息，到网上一查基本上说的都是cocoapods问题，就是淘宝源不能用了。</p>
+<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><p>![图片描述][<a href="http://alfierichou1-1253852921.cosgz.myqcloud.com/git%E9%97%AE%E9%A2%98%E6%8A%A5%E9%94%99%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3/solution.png]" target="_blank" rel="noopener">http://alfierichou1-1253852921.cosgz.myqcloud.com/git%E9%97%AE%E9%A2%98%E6%8A%A5%E9%94%99%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3/solution.png]</a></p>
+<ul>
+<li>这个就是解决办法，但是又有了一个新的问题，就是我明明配置的是RubyChina的，但是为什么成了rubygems。</li>
+<li>谁知道这个问题，是怎么回事，可以给我发邮件。然后我再segmentfault上也贴出来了<a href="https://segmentfault.com/q/1010000010296905" target="_blank" rel="noopener">https://segmentfault.com/q/1010000010296905</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/28/从零开始构建vuejs项目/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          从零开始构建vuejs项目
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/20/如何用JavaScript生成一个数组/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何用JavaScript生成一个数组&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=O23IwUQBGiCNXl2N7qwt0rIwuuNlONPsTXUaErsj7Ie_7GWLgXpe!2105743534" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

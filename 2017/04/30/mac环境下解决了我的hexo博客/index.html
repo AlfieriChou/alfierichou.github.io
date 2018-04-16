@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>mac环境下解决了我的hexo博客 - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言 终于换了笔记本了，以前的asus A550终于退休了，买了个macbook pro也开始了我的吃土生活😄😄😄，然后问题就来了，MacBook下怎么搭建hexo博客，才能继续写写博客，喝喝小茶～">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mac环境下解决了我的hexo博客">
+<meta property="og:url" content="http://github.com/AlfieriChou/2017/04/30/mac环境下解决了我的hexo博客/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="前言 终于换了笔记本了，以前的asus A550终于退休了，买了个macbook pro也开始了我的吃土生活😄😄😄，然后问题就来了，MacBook下怎么搭建hexo博客，才能继续写写博客，喝喝小茶～">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-11T02:27:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mac环境下解决了我的hexo博客">
+<meta name="twitter:description" content="前言 终于换了笔记本了，以前的asus A550终于退休了，买了个macbook pro也开始了我的吃土生活😄😄😄，然后问题就来了，MacBook下怎么搭建hexo博客，才能继续写写博客，喝喝小茶～">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-mac环境下解决了我的hexo博客" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mac环境下解决了我的hexo博客
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/04/30/mac环境下解决了我的hexo博客/" class="article-date">
+  <time datetime="2017-04-30T12:49:31.000Z" itemprop="datePublished">2017-04-30</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>终于换了笔记本了，以前的asus A550终于退休了，买了个macbook pro也开始了我的吃土生活😄😄😄，然后问题就来了，MacBook下怎么搭建hexo博客，才能继续写写博客，喝喝小茶～</li>
+</ul>
+<a id="more"></a>
+<h4 id="第一个问题，又遇到了ssh的问题，换电脑了，那么ssh又需要重新配置了。"><a href="#第一个问题，又遇到了ssh的问题，换电脑了，那么ssh又需要重新配置了。" class="headerlink" title="第一个问题，又遇到了ssh的问题，换电脑了，那么ssh又需要重新配置了。"></a>第一个问题，又遇到了ssh的问题，换电脑了，那么ssh又需要重新配置了。</h4><ul>
+<li>本地生成ssh key密钥命令：ssh-keygen -t rsa -C “your github email”</li>
+<li>查看.ssh／目录，可以看到公钥密钥以生成，名称分别为id_rsa.pub和id_rsa</li>
+<li>终端执行命令查看公钥内容：cat ~/.ssh/id_rsa.pub</li>
+<li>将这一部分代码添加到GitHub账号的SSH Keys中去（别忘了在前面加上ssh-rsa）</li>
+<li>点击add ssh确认就行了，这样ssh-key就解决了<h4 id="第二个问题，当然是重新解决hexo项目了。"><a href="#第二个问题，当然是重新解决hexo项目了。" class="headerlink" title="第二个问题，当然是重新解决hexo项目了。"></a>第二个问题，当然是重新解决hexo项目了。</h4></li>
+<li>npm install hexo-cli -g</li>
+<li>hexo init blog</li>
+<li>cd blog</li>
+<li>npm install</li>
+<li>hexo s<h4 id="第三个问题，就是解决你的主题，还有一些config配置。"><a href="#第三个问题，就是解决你的主题，还有一些config配置。" class="headerlink" title="第三个问题，就是解决你的主题，还有一些config配置。"></a>第三个问题，就是解决你的主题，还有一些config配置。</h4></li>
+<li>重新选择主题，我还是喜欢minos这个主题</li>
+<li>修改_config.yml</li>
+<li>hexo d -g 部署到你的github.io上<h4 id="第四个问题，发布文章那些命令"><a href="#第四个问题，发布文章那些命令" class="headerlink" title="第四个问题，发布文章那些命令"></a>第四个问题，发布文章那些命令</h4></li>
+<li>hexo new [layout] “post-name”发表文章</li>
+<li>hexo new page “pagename”新建页面</li>
+</ul>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/01/express连接12种数据库解决方案/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          express连接12种数据库解决方案
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/28/学习JavaScript数据结构与算法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">学习JavaScript数据结构与算法&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=O23IwUQBGiCNXl2N7qwt0rIwuuNlONPsTXUaErsj7Ie_7GWLgXpe!2105743534" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>express笔记整理 - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言express是node.js使用的框架，这是一个后端框架，可以简化代码，实现快速、简单的开发。express支持许多的第三方中间件，因为express只有一个内置的static来处理静态文件的中间件。比如说bodyParser（用来处理json和查询字符串）、mongoose（用来连接mong数据库）等等">
+<meta name="keywords" content="node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="express笔记整理">
+<meta property="og:url" content="http://github.com/AlfieriChou/2017/05/25/express笔记整理/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="前言express是node.js使用的框架，这是一个后端框架，可以简化代码，实现快速、简单的开发。express支持许多的第三方中间件，因为express只有一个内置的static来处理静态文件的中间件。比如说bodyParser（用来处理json和查询字符串）、mongoose（用来连接mong数据库）等等">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-11T02:37:12.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="express笔记整理">
+<meta name="twitter:description" content="前言express是node.js使用的框架，这是一个后端框架，可以简化代码，实现快速、简单的开发。express支持许多的第三方中间件，因为express只有一个内置的static来处理静态文件的中间件。比如说bodyParser（用来处理json和查询字符串）、mongoose（用来连接mong数据库）等等">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-express笔记整理" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      express笔记整理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/05/25/express笔记整理/" class="article-date">
+  <time datetime="2017-05-25T01:04:07.000Z" itemprop="datePublished">2017-05-25</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node-js/">node.js</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>express是node.js使用的框架，这是一个后端框架，可以简化代码，实现快速、简单的开发。express支持许多的第三方中间件，因为express只有一个内置的static来处理静态文件的中间件。比如说bodyParser（用来处理json和查询字符串）、mongoose（用来连接mong数据库）等等</p>
+<a id="more"></a>
+<h4 id="app"><a href="#app" class="headerlink" title="app"></a>app</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">	res.send(<span class="string">'i am AlfieriChou'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">8888</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>app.locals一个用来存储属性的空对象</li>
+</ul>
+<ul>
+<li>当模板选软对象时，会将locals和我们传在render里的对象 合并为一个。</li>
+<li>当我们在locals中设置属性，所有的模板就都有这个属性。</li>
+</ul>
+<ul>
+<li>app.use使用中间件 第一个参数可以是具体的设置路径，第二个是callback。</li>
+<li>app.get可以获取到app.set()设置的值，设置路由。</li>
+<li>app.post设置post请求路由</li>
+<li>app.all(‘<em>‘)all+‘</em>’表示所有请求</li>
+<li>app.route设置路由<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"></span><br><span class="line">app.route(<span class="string">'/about'</span>)</span><br><span class="line">.all(<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">	在path为/about的路由前执行，可以设置中间件</span><br><span class="line">&#125;)</span><br><span class="line">.get(<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">	res.send(...);</span><br><span class="line">&#125;)</span><br><span class="line">.post(<span class="function"><span class="keyword">function</span>(<span class="params">req,res,next</span>)</span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="request"><a href="#request" class="headerlink" title="request"></a>request</h3><ul>
+<li>req.body 请求体<br>通常请求体中的数据需要用事件监听来获取。第三方中间件可以自带监听并处理。比如body-parser中的json()来处理json格式的，urlencoded({extended: true})来处理查询字符串multer处理http提交multipart/form-data，也就是文件上传</li>
+</ul>
+<ul>
+<li>multipart/form-data常用的表单上传文件的方式，比如写邮件添加附件。发送的也是字符串，只不过不是常见的key=value那种，而是加了分隔符等内容的构造体–开始– –分割– –结尾–</li>
+</ul>
+<ul>
+<li>req.path 请求路径 –&gt;pathname</li>
+<li>req.method 请求方式</li>
+<li>req.hostname 请求主机名–&gt;<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></li>
+<li>req.query 请求的查询字符串</li>
+<li>req.headers 请求头</li>
+<li>req.params 请求路径参数</li>
+</ul>
+<ul>
+<li>如果我们写了一个路由route是user/:name/:name2</li>
+<li>第二个路径名就可以用req.params.name这样取到。带:的都会以key value的方式{name:’’,name1:’’}放到req.params中。<h3 id="response"><a href="#response" class="headerlink" title="response"></a>response</h3></li>
+</ul>
+<ul>
+<li>res.end 结束response进程 相当于node.js中的end</li>
+<li>res.send 结束并返回数据 参数支持对象格式的、数字、以及字符串</li>
+<li>res.json 结束并JSON。stringify你的参数，比如res.json({name:22})</li>
+<li>res.status(code) res.status(403).end();</li>
+<li><p>res.set 设置响应头</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">res.set(<span class="string">'Content-Type'</span>,<span class="string">'text/plain'</span>);</span><br><span class="line"></span><br><span class="line">res.set(&#123;</span><br><span class="line">	<span class="string">'Content-Type'</span>,<span class="string">'text/plain'</span>,</span><br><span class="line">	<span class="string">"Content-Length"</span>,<span class="string">'123'</span>,</span><br><span class="line">	<span class="string">'Etag'</span>,<span class="string">'12345'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//对象里面重复的后面会把前面的覆盖</span></span><br><span class="line"></span><br><span class="line">res.set(<span class="string">'Set-Cookie'</span>,<span class="string">'name=AlfieriChou'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>res.get() 获取设置的属性值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res.get(&apos;Content-Type&apos;); //text/plain</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>res.render 读取模板引擎，并返回客户端</p>
+</li>
+</ul>
+<ul>
+<li>支持三个参数(view,locals,callback)</li>
+<li>第一个参数是读取的模板文件名，第二个参数是需要替换的属性值，{username:’AlfieriChou’}，第三个参数是callback后面两个参数，可以不传。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/contact'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    res.render(<span class="string">'contact'</span>,&#123;<span class="attr">msg</span>:<span class="string">'contact'</span>&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>res.cookie(name,value,options)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sets cookie name to value</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>domain</td>
+<td>String</td>
+<td>只有访问domain对应的域名才会设置cookie</td>
+</tr>
+<tr>
+<td>expires</td>
+<td>Date</td>
+<td>也代表cookie的生存期，value是一个过期时间 比如new Date(Date.now()+20*1000)}) 不写或者设0默认为会话cookie，存在客户端内存中 </td>
+</tr>
+<tr>
+<td>httpOnly</td>
+<td>Boolean</td>
+<td>仅在http协议下设定cookie</td>
+</tr>
+<tr>
+<td>maxAge</td>
+<td>String</td>
+<td>设置cookie过期时间，倒计时 设置毫秒</td>
+</tr>
+<tr>
+<td>path</td>
+<td>String</td>
+<td>只有访问path对应的路径才会设置cookie，默认’/‘</td>
+</tr>
+<tr>
+<td>secure</td>
+<td>Boolean</td>
+<td>仅在https协议下有cookie</td>
+</tr>
+<tr>
+<td>signed</td>
+<td>Boolean</td>
+<td>是否有签名。需要 使用中间件添加秘钥 1.app.use(cookieParser(‘AlfieriChou’));2.res.send(req.signedCookies);此时cookie在req.signedCookies上 </td>
+</tr>
+</tbody>
+</table>
+<h3 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h3><ul>
+<li>内置static(‘/root’,{option})</li>
+<li><p>body-parser 第三方 用来处理请求体中的数据，require并使用 use这个中间件，会自动处理post请求 ，request.body 中的数据。json字符串，查询字符串都转化为对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bodyParser=<span class="built_in">require</span>(<span class="string">'body-parser'</span>);</span><br><span class="line">app.use(express.bodyParser())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>multer 用来处理http提交multipart/form-data，也就是文件上传。详细api 见 <a href="https://github.com/expressjs/multer">https://github.com/expressjs/multer</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> multer = <span class="built_in">require</span> ( <span class="string">'multer'</span> )</span><br><span class="line">app.use(multer(&#123; <span class="attr">dest</span>: <span class="string">'./uploads/'</span> &#125;))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>cookie-parser 处理请求头中的cookie,并把其转化为对象，放到request上。在use这个中间件下面都可以用request.cookies 取到传过来的cookie。<br>原生使用request.headers[‘cookie’] 取到一个字符串’; ‘分割的<br>另外 response.cookie可以设置cookie,注意区分。response.cookie(name,value,{options})..<br>原生只能使用 res.setHeader(‘Set-Cookie’,”age=6; Domain=localhost”);</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> cookieParser = <span class="built_in">require</span>(<span class="string">'cookie-parser'</span>);</span><br><span class="line">app.use(cookieParser())</span><br><span class="line"><span class="comment">//支持传秘钥参数</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>虽然session与cookie是分开保存的.但是session中的数据经过加密处理后默认保存在一个cookie中.因此在使用session中间件之前必须使用cookieParser中间件.</li>
+</ul>
+<ul>
+<li>session-parser 虽然session与cookie是分开保存的.但是session中的数据经过加密处理后默认保存在一个cookie中.因此在使用session中间件之前必须使用cookieParser中间件.<br>使用了 session-parser中间件以后，requset.session上就有了session的所有属性………<br>原生的话是先从cookie上 取出sessionid对应的值，这个值保存在我们后台对象中，作为 key。所有通过对象 obj.key 可以取出它对应的信息。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> session = <span class="built_in">require</span>(<span class="string">'express-session'</span>);</span><br><span class="line">app.use(session(&#123;options&#125;))</span><br><span class="line"><span class="comment">//options参数的具体取值:</span></span><br><span class="line"></span><br><span class="line">key:字符串,用于指定用来保存session的cookie名称,默认为coomect.sid.</span><br><span class="line"></span><br><span class="line">store:属性值为一个用来保存session数据的第三方存储对象.</span><br><span class="line"></span><br><span class="line">fingerprint:属性值为一个自定义指纹生成函数.</span><br><span class="line"></span><br><span class="line">cookie:属性值为一个用来指定保存session数据的cookie设置的对象,默认值为&#123;<span class="attr">path</span>:”/”,<span class="attr">httpOnly</span>:<span class="literal">true</span>,<span class="attr">maxAge</span>:<span class="number">14400000</span>&#125;.</span><br><span class="line"></span><br><span class="line">path是cookie保存路径.httpOnly是否只针对http保存cookie,</span><br><span class="line"></span><br><span class="line">maxAge用于指定cookie的过期时间,单位为毫秒.</span><br><span class="line"></span><br><span class="line">secret:字符串.用来对session数据进行加密的字符串.这个属性值为必须指定的属性.</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/25/将github-io部署到alfierichou-top上/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          将github.io部署到alfierichou.top上
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/24/git常用问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">git常用问题&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=O23IwUQBGiCNXl2N7qwt0rIwuuNlONPsTXUaErsj7Ie_7GWLgXpe!2105743534" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

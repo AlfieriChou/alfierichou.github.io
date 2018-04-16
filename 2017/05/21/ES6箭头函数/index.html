@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ES6箭头函数 - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.在箭头函数中实现代码使用{},大括号表示代码执行1（a）=&amp;#123;alert(a)&amp;#125;  ==== function(a)&amp;#123;alert(a)&amp;#125;">
+<meta name="keywords" content="es6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6箭头函数">
+<meta property="og:url" content="http://github.com/AlfieriChou/2017/05/21/ES6箭头函数/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="1.在箭头函数中实现代码使用{},大括号表示代码执行1（a）=&amp;#123;alert(a)&amp;#125;  ==== function(a)&amp;#123;alert(a)&amp;#125;">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-06-28T08:05:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6箭头函数">
+<meta name="twitter:description" content="1.在箭头函数中实现代码使用{},大括号表示代码执行1（a）=&amp;#123;alert(a)&amp;#125;  ==== function(a)&amp;#123;alert(a)&amp;#125;">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-ES6箭头函数" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ES6箭头函数
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/05/21/ES6箭头函数/" class="article-date">
+  <time datetime="2017-05-21T04:46:43.000Z" itemprop="datePublished">2017-05-21</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/es6/">es6</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.在箭头函数中实现代码使用{},大括号表示代码执行<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">（a）=&#123;alert(a)&#125;  ==== <span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;alert(a)&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>2.箭头函数返回对象()，小括号表示对象返回<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(a)=&#123;<span class="keyword">return</span> a&#125;  ==== <span class="function">(<span class="params">a</span>)=&gt;</span>(a)  ==== <span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;<span class="keyword">return</span> a&#125;</span><br></pre></td></tr></table></figure></p>
+<p>3.this的操作<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func=(a)=&#123;alert(<span class="keyword">this</span>)&#125;</span><br><span class="line"><span class="keyword">this</span>是什么?区别在于普通函数<span class="keyword">this</span>不再是函数调用</span><br><span class="line">p=<span class="keyword">new</span> Person()</span><br><span class="line">p.func(); <span class="comment">//func中的this不再是Person对象</span></span><br><span class="line">箭头函数中的<span class="keyword">this</span>是箭头函数声明所在类，或者所在<span class="function"><span class="keyword">function</span>的对象</span></span><br><span class="line"><span class="function">箭头函数在哪里声明的<span class="title">this</span>就是谁</span></span><br><span class="line"><span class="function">优点：节省了绑定<span class="title">this</span>操作</span></span><br><span class="line"><span class="function">以往在<span class="title">jsx</span>中操作点击事件 要处理当前组件对象数据</span></span><br><span class="line"><span class="function">需要手动<span class="title">bind</span>(<span class="params">this</span>)这样才可以访问到当前组件</span></span><br><span class="line"><span class="function">现在只需要用箭头函数 自动绑定</span></span><br></pre></td></tr></table></figure></p>
+<p>4.链式调用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> func=<span class="function">(<span class="params">a</span>)=&gt;</span><span class="function">(<span class="params">b</span>)=&gt;</span>&#123;alert(b)&#125;</span><br><span class="line">b是什么？</span><br><span class="line">b是执行一次调用：func()</span><br><span class="line">以后再次执行调用传递的参数</span><br><span class="line">func()(<span class="string">'this is b'</span>)</span><br><span class="line">即b是用来接受第<span class="number">2</span>次调用的形式参数</span><br><span class="line">在发生调用的时候，第<span class="number">2</span>次调用的参数赋值给b</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>优点：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">使用高阶函数实现柯里化操作 在调用函数时 业务更加清晰</span><br><span class="line">未柯里化：</span><br><span class="line">func(a,b,c)&#123;</span><br><span class="line">	分别使用a,b,c处理业务</span><br><span class="line">&#125;</span><br><span class="line">func(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">柯里化：</span><br><span class="line">func(a)&#123;</span><br><span class="line">	a处理业务</span><br><span class="line">	<span class="keyword">return</span> func(b)&#123;</span><br><span class="line">		b处理业务</span><br><span class="line">		<span class="keyword">return</span> func(c)&#123;</span><br><span class="line">			c处理业务</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">func(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>)</span><br><span class="line">就是把以前需要传递多个参数的函数操作</span><br><span class="line">定义成只需要传递一个参数</span><br><span class="line">每次操作结束后再次调用 接受下一个参数</span><br><span class="line">完成以前多个参数的需求</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>缺点：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">自动生成了大量闭包，变量过多被共享到内存方法区里注意内存泄漏</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/24/ES6迭代器-Iterator/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          ES6迭代器-Iterrator
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/21/ES6的import和export/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ES6的import和export&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=O23IwUQBGiCNXl2N7qwt0rIwuuNlONPsTXUaErsj7Ie_7GWLgXpe!2105743534" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

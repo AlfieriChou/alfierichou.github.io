@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>express处理session - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="用express-sessions处理node.js中session存储问题安装1npm install express-sessions">
+<meta name="keywords" content="node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="express处理session">
+<meta property="og:url" content="http://github.com/AlfieriChou/2018/01/24/express处理session/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="用express-sessions处理node.js中session存储问题安装1npm install express-sessions">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-01-24T07:01:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="express处理session">
+<meta name="twitter:description" content="用express-sessions处理node.js中session存储问题安装1npm install express-sessions">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-express处理session" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      express处理session
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2018/01/24/express处理session/" class="article-date">
+  <time datetime="2018-01-24T06:50:26.000Z" itemprop="datePublished">2018-01-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node-js/">node.js</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="用express-sessions处理node-js中session存储问题"><a href="#用express-sessions处理node-js中session存储问题" class="headerlink" title="用express-sessions处理node.js中session存储问题"></a>用express-sessions处理node.js中session存储问题</h4><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express-sessions</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="mongodb"><a href="#mongodb" class="headerlink" title="mongodb"></a>mongodb</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mongoose = <span class="built_in">require</span>(<span class="string">'mongoose'</span>);</span><br><span class="line"></span><br><span class="line">mongoose.connect();</span><br><span class="line"></span><br><span class="line">app.use(express.session(&#123;</span><br><span class="line">    secret: <span class="string">'a4f8071f-c873-4447-8ee2'</span>,</span><br><span class="line">    cookie: &#123; <span class="attr">maxAge</span>: <span class="number">2628000000</span> &#125;,</span><br><span class="line">    store: <span class="keyword">new</span> (<span class="built_in">require</span>(<span class="string">'express-sessions'</span>))(&#123;</span><br><span class="line">        storage: <span class="string">'mongodb'</span>,</span><br><span class="line">        instance: mongoose, <span class="comment">// optional</span></span><br><span class="line">        host: <span class="string">'localhost'</span>, <span class="comment">// optional</span></span><br><span class="line">        port: <span class="number">27017</span>, <span class="comment">// optional</span></span><br><span class="line">        db: <span class="string">'test'</span>, <span class="comment">// optional</span></span><br><span class="line">        collection: <span class="string">'sessions'</span>, <span class="comment">// optional</span></span><br><span class="line">        expire: <span class="number">86400</span> <span class="comment">// optional</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+<h4 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> redis = <span class="built_in">require</span>(<span class="string">'redis'</span>);</span><br><span class="line"><span class="keyword">const</span> client = redis.createClient(<span class="number">6379</span>, <span class="string">'localhost'</span>);</span><br><span class="line"></span><br><span class="line">app.use(express.session(&#123;</span><br><span class="line">    secret: <span class="string">'a4f8071f-c873-4447-8ee2'</span>,</span><br><span class="line">    cookie: &#123; <span class="attr">maxAge</span>: <span class="number">2628000000</span> &#125;,</span><br><span class="line">    store: <span class="keyword">new</span> (<span class="built_in">require</span>(<span class="string">'express-sessions'</span>))(&#123;</span><br><span class="line">        storage: <span class="string">'redis'</span>,</span><br><span class="line">        instance: client, <span class="comment">// optional</span></span><br><span class="line">        host: <span class="string">'localhost'</span>, <span class="comment">// optional</span></span><br><span class="line">        port: <span class="number">6379</span>, <span class="comment">// optional</span></span><br><span class="line">        collection: <span class="string">'sessions'</span>, <span class="comment">// optional</span></span><br><span class="line">        expire: <span class="number">86400</span> <span class="comment">// optional</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/02/08/filter和map/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          filter和map
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/27/Linux定时任务crontab/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Linux定时任务crontab&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=O23IwUQBGiCNXl2N7qwt0rIwuuNlONPsTXUaErsj7Ie_7GWLgXpe!2105743534" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

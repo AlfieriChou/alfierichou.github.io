@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>从零开始构建vuejs项目 - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="从零开始构建vuejs的express应用 当然看到这个你会先想到的是vue-cli这个工具，但是，我并不喜欢这个东西，而我是喜欢一个东西是从什么都没有，然后自己去配置，这样也就不用担心别人在你的项目上动手脚，当然那些黑客除外，这类群体不考虑。我以前做node.js的express项目的时候，也是从npm init开始一个一个文件去配置。这可能是一种强迫症的习惯吧！">
+<meta name="keywords" content="vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零开始构建vuejs项目">
+<meta property="og:url" content="http://github.com/AlfieriChou/2017/07/28/从零开始构建vuejs项目/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="从零开始构建vuejs的express应用 当然看到这个你会先想到的是vue-cli这个工具，但是，我并不喜欢这个东西，而我是喜欢一个东西是从什么都没有，然后自己去配置，这样也就不用担心别人在你的项目上动手脚，当然那些黑客除外，这类群体不考虑。我以前做node.js的express项目的时候，也是从npm init开始一个一个文件去配置。这可能是一种强迫症的习惯吧！">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://alfierichou1-1253852921.cosgz.myqcloud.com/vue.js-express/hello.png">
+<meta property="og:image" content="http://alfierichou1-1253852921.cosgz.myqcloud.com/vue.js-express/src.png">
+<meta property="og:image" content="http://alfierichou1-1253852921.cosgz.myqcloud.com/vue.js-express/index.png">
+<meta property="og:image" content="http://alfierichou1-1253852921.cosgz.myqcloud.com/vue.js-express/user.png">
+<meta property="og:updated_time" content="2017-07-29T03:42:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从零开始构建vuejs项目">
+<meta name="twitter:description" content="从零开始构建vuejs的express应用 当然看到这个你会先想到的是vue-cli这个工具，但是，我并不喜欢这个东西，而我是喜欢一个东西是从什么都没有，然后自己去配置，这样也就不用担心别人在你的项目上动手脚，当然那些黑客除外，这类群体不考虑。我以前做node.js的express项目的时候，也是从npm init开始一个一个文件去配置。这可能是一种强迫症的习惯吧！">
+<meta name="twitter:image" content="http://alfierichou1-1253852921.cosgz.myqcloud.com/vue.js-express/hello.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-从零开始构建vuejs项目" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      从零开始构建vuejs项目
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/07/28/从零开始构建vuejs项目/" class="article-date">
+  <time datetime="2017-07-28T14:39:34.000Z" itemprop="datePublished">2017-07-28</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/vue-js/">vue.js</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="从零开始构建vuejs的express应用"><a href="#从零开始构建vuejs的express应用" class="headerlink" title="从零开始构建vuejs的express应用"></a>从零开始构建vuejs的express应用</h3><ul>
+<li>当然看到这个你会先想到的是vue-cli这个工具，但是，我并不喜欢这个东西，而我是喜欢一个东西是从什么都没有，然后自己去配置，这样也就不用担心别人在你的项目上动手脚，当然那些黑客除外，这类群体不考虑。我以前做node.js的express项目的时候，也是从npm init开始一个一个文件去配置。这可能是一种强迫症的习惯吧！</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>所以就去网上找了很多的这种配置教程。最后，也总算是配置出来了。以后如果工作开发此类应用的时候就不用再去装vue-cli这个东西了。可以直接拿过去使用。</li>
+</ul>
+<h4 id="一、开发环境"><a href="#一、开发环境" class="headerlink" title="一、开发环境"></a>一、开发环境</h4><ul>
+<li>node.js v7.9.0版本</li>
+</ul>
+<h4 id="二、创建项目"><a href="#二、创建项目" class="headerlink" title="二、创建项目"></a>二、创建项目</h4><ul>
+<li>先创建一个文件夹myapp，然后通过终端，输入npm init输入相关的信息，appname，版本号，git…</li>
+<li>在myapp项目下创建app.js</li>
+<li>在myapp项目下添加一个文件夹bin 里面放了www文件（就是node.js的express框架用的那个，复制过来就行了）</li>
+<li>在myapp项目下，创建一个index.html文件<br>  文件内容：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">head</span>&gt;</span>   </span><br><span class="line">    		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span> </span><br><span class="line">    		<span class="tag">&lt;<span class="name">title</span>&gt;</span>myapp<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">    		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>在myapp项目下创建一个src文件夹，然后在这个文件夹下创建一app.vue和main.js，App.vue文件内容如下：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span>hello , this app vue !<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined">  </span></span><br><span class="line"><span class="undefined"> 	body&#123;color:red;&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>main.js的内容如下：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">"vue"</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">"./app"</span>;</span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">	el:<span class="string">'#app'</span>, </span><br><span class="line">	render:<span class="function"><span class="params">h</span>=&gt;</span> h(App)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>替换package.json文件，然后通过npm install安装先关依赖</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"myapp"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"0.0.0"</span>,</span><br><span class="line">  <span class="attr">"private"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"start"</span>: <span class="string">"cross-env NODE_ENV=development node bin/www"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"babel-core"</span>: <span class="string">"^6.20.0"</span>,</span><br><span class="line">    <span class="attr">"babel-loader"</span>: <span class="string">"^6.2.9"</span>,</span><br><span class="line">    <span class="attr">"babel-plugin-transform-runtime"</span>: <span class="string">"^6.15.0"</span>,</span><br><span class="line">    <span class="attr">"babel-preset-es2015"</span>: <span class="string">"^6.18.0"</span>,</span><br><span class="line">    <span class="attr">"babel-preset-stage-2"</span>: <span class="string">"^6.18.0"</span>,</span><br><span class="line">    <span class="attr">"babel-runtime"</span>: <span class="string">"^5.8.38"</span>,</span><br><span class="line">    <span class="attr">"css-loader"</span>: <span class="string">"^0.26.1"</span>,</span><br><span class="line">    <span class="attr">"html-webpack-plugin"</span>: <span class="string">"^2.24.1"</span>,</span><br><span class="line">    <span class="attr">"vue-html-loader"</span>: <span class="string">"^1.2.3"</span>,</span><br><span class="line">    <span class="attr">"vue-loader"</span>: <span class="string">"^10.0.2"</span>,</span><br><span class="line">    <span class="attr">"vue-template-compiler"</span>: <span class="string">"^2.1.6"</span>,</span><br><span class="line">    <span class="attr">"webpack"</span>: <span class="string">"^1.14.0"</span>,</span><br><span class="line">    <span class="attr">"webpack-dev-middleware"</span>: <span class="string">"^1.6.1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"express"</span>: <span class="string">"^4.14.0"</span>,</span><br><span class="line">    <span class="attr">"vue"</span>: <span class="string">"^2.1.6"</span>,</span><br><span class="line">    <span class="attr">"vue-router"</span>: <span class="string">"^2.1.1"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>babel-开头：都是用于兼容es6写法，将es6的代码转换成es5的代码</li>
+<li>webpack ：webpack打包需要引入的核心包</li>
+<li>html-webpack-plugin：是webpack的插件，这个插件用来简化创建服务于 webpack bundle 的 HTML 文件，尤其是对于在文件名中包含了 hash 值，而这个值在每次编译的时候都发生变化的情况。你既可以让这个插件来帮助你自动生成 HTML 文件，也可以使用 lodash 模板加载生成的 bundles，或者自己加载这些 bundles。</li>
+<li>vue-loader：是webpack的loader,能够将.vue文件转换成js文件</li>
+<li>vue-html-loader、vue-template-compiler、css-loader：这三个都是webpack的loader,都是将.vue文件转换成js文件的依赖</li>
+<li><p>webpack-dev-middleware ：需要webpack打包的项目，开发时使用的中间件，主要作用是不需要将打包生成的文件放在硬盘中，而是放在内存中，这样可以提高开发效率，而且配合webpack-hot-middleware中间件使用可以实现热加载</p>
+</li>
+<li><p>在myapp下创建一个build文件夹，在文件夹内创建webpack.base.conf.js文件</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// nodejs 中的path模块</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">const</span> hotClient = <span class="string">'./build/hot-client'</span>;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">const</span>  webpackConf = &#123;</span><br><span class="line">    <span class="comment">// 入口文件，path.resolve()方法，可以结合我们给定的两个参数最后生成绝对路径，最终指向的就是我们的index.js文件 </span></span><br><span class="line">    entry: &#123;  <span class="attr">index</span>: [   path.resolve(__dirname, <span class="string">'../src/main.js'</span>)  ] &#125;,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 输出配置 </span></span><br><span class="line">    output: &#123;  <span class="comment">// 输出路径是 myProject/output/static  </span></span><br><span class="line">        path: path.resolve(__dirname, <span class="string">'../output'</span>), </span><br><span class="line">        publicPath:<span class="string">'/'</span>,  <span class="attr">filename</span>: <span class="string">'[name].[hash].js'</span> </span><br><span class="line">    &#125;,</span><br><span class="line">     resolve: &#123;  </span><br><span class="line">        extensions: [<span class="string">''</span>, <span class="string">'.js'</span>, <span class="string">'.vue'</span>], </span><br><span class="line">        alias: &#123;   <span class="string">'vue'</span>: <span class="string">'vue/dist/vue.js'</span>  &#125; <span class="comment">// 设置别名vue1不需要设置，vue2必须设置 否则会报错 </span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">module</span>: &#123;  </span><br><span class="line">        loaders: [   </span><br><span class="line">        <span class="comment">// 使用vue-loader 加载 .vue 结尾的文件   </span></span><br><span class="line">            &#123;    <span class="attr">test</span>: <span class="regexp">/\.vue$/</span>,    <span class="attr">loader</span>: <span class="string">'vue'</span>   &#125;,  </span><br><span class="line">             &#123;    <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,    <span class="attr">loader</span>: <span class="string">'babel'</span>,    <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>   &#125;  ]</span><br><span class="line">    &#125;, </span><br><span class="line">    vue: &#123;  <span class="attr">loaders</span>: &#123;   <span class="attr">js</span>: <span class="string">'babel'</span>  &#125; &#125;, </span><br><span class="line">    plugins:[  </span><br><span class="line">        <span class="keyword">new</span> HtmlWebpackPlugin(&#123;   </span><br><span class="line">              filename: <span class="string">'index.html'</span>,  </span><br><span class="line">              template: path.resolve(__dirname, <span class="string">'../index.html'</span>),  </span><br><span class="line">              inject: <span class="literal">true</span>  </span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;;</span><br><span class="line">	</span><br><span class="line"><span class="built_in">module</span>.exports  = webpackConf;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将项目下的app.js内容替换</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>); </span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>); </span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="keyword">const</span> webpackConfig = <span class="built_in">require</span>(<span class="string">'./build/webpack.base.conf'</span>); </span><br><span class="line"><span class="keyword">const</span> app = express();<span class="comment">// 创建一个express实例 </span></span><br><span class="line"><span class="keyword">const</span> compiler = webpack(webpackConfig);<span class="comment">// 调用webpack并把配置传递过去 </span></span><br><span class="line"><span class="comment">// 使用 webpack-dev-middleware 中间件 </span></span><br><span class="line"><span class="keyword">const</span> devMiddleware = <span class="built_in">require</span>(<span class="string">'webpack-dev-middleware'</span>)(compiler, &#123;</span><br><span class="line"> 	publicPath: <span class="string">'/'</span>, </span><br><span class="line">	stats: &#123; <span class="attr">colors</span>: <span class="literal">true</span>, <span class="attr">chunks</span>: <span class="literal">false</span> </span><br><span class="line">&#125;&#125;); </span><br><span class="line">app.use(devMiddleware); </span><br><span class="line"><span class="built_in">module</span>.exports = app;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在项目文件下添加. babelrc文件</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;  <span class="string">"presets"</span>: [<span class="string">"es2015"</span>,<span class="string">"stage-2"</span>],  <span class="string">"plugins"</span>: [<span class="string">"transform-runtime"</span>],  <span class="string">"comments"</span>: <span class="literal">false</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>然后通过终端输入npm start就能运行了，然后通过127.0.0.1:3000就能访问该项目了<br>这样就算是将hello world输出了。</p>
+<p><img src="http://alfierichou1-1253852921.cosgz.myqcloud.com/vue.js-express/hello.png" alt="hello"></p>
+<h4 id="二-添加热加载"><a href="#二-添加热加载" class="headerlink" title="二.添加热加载"></a>二.添加热加载</h4><ul>
+<li><p>在项目根目录下运行npm install –save-dev webpack-hot-middleware</p>
+</li>
+<li><p>打开app.js,添加</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="built_in">require</span>(<span class="string">"webpack-hot-middleware"</span>)(compiler));</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在webpack.base.conf.js中的plugins中添加</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Webpack 1.0 </span></span><br><span class="line"><span class="keyword">new</span> webpack.optimize.OccurenceOrderPlugin(), </span><br><span class="line"><span class="comment">// Webpack 2.0 fixed this mispelling  </span></span><br><span class="line"><span class="comment">// new webpack.optimize.OccurrenceOrderPlugin(),  </span></span><br><span class="line"><span class="keyword">new</span> webpack.HotModuleReplacementPlugin(),  </span><br><span class="line"><span class="keyword">new</span> webpack.NoErrorsPlugin()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在webpack.base.conf.js中添加以下代码：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.keys(webpackConf.entry).forEach(<span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123; </span><br><span class="line"><span class="keyword">var</span> extras = [<span class="string">'webpack-hot-middleware/client?reload=1'</span>]; </span><br><span class="line">webpackConf.entry[name] = extras.concat(webpackConf.entry[name]); &#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="三-提取webpack配置"><a href="#三-提取webpack配置" class="headerlink" title="三.提取webpack配置"></a>三.提取webpack配置</h4><ul>
+<li>因为开发时需要webpack-dev-middleware、webpack-hot-middleware这两个中间件，但是正真发布的时候并不需要，因此需要将这两个的配置提取出来。</li>
+<li>webpack-dev-middleware 这个中间件的作用是 开发的时候不生成代码，编译后的代码放在内存中，不会写入硬盘，因此不用每次编译都生成新的文件，提高开发效率</li>
+<li><p>webpack-hot-middleware用于热加载，修改代码后立即更新</p>
+</li>
+<li><p>首先运行npm install –save-dev webpack-merge 下载 webpack-merge 工具，用于合并webpack配置使用</p>
+</li>
+<li><p>运行 npm install –save-dev cross-env 下载cross-env工具，用户在命令中设置环境变量</p>
+</li>
+<li><p>在build文件夹中新建webpack.dev.conf.js，写入以下代码：</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="keyword">const</span> webPackBaseConf = <span class="built_in">require</span>(<span class="string">'./webpack.base.conf'</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</span><br><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>);</span><br><span class="line"><span class="keyword">const</span> hotClient = <span class="string">'./build/hot-client'</span>;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">const</span> webpackDevConf = merge(webPackBaseConf,&#123; </span><br><span class="line">    entry: &#123; <span class="attr">index</span>: [  hotClient,  path.resolve(__dirname, <span class="string">'../src/main.js'</span>) ]&#125;,</span><br><span class="line">    plugins:[  </span><br><span class="line">    <span class="comment">// Webpack 1.0  </span></span><br><span class="line">    <span class="keyword">new</span> webpack.optimize.OccurenceOrderPlugin(), </span><br><span class="line">    <span class="comment">// Webpack 2.0 fixed this mispelling  </span></span><br><span class="line">    <span class="comment">// new webpack.optimize.OccurrenceOrderPlugin(),  </span></span><br><span class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin(),  </span><br><span class="line">    <span class="keyword">new</span> webpack.NoErrorsPlugin()</span><br><span class="line">    ]&#125;);</span><br><span class="line">	</span><br><span class="line"><span class="built_in">Object</span>.keys(webpackDevConf.entry).forEach(<span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123; </span><br><span class="line">    <span class="keyword">const</span> extras = [hotClient]; </span><br><span class="line">    webpackDevConf.entry[name] = extras.concat(webpackDevConf.entry[name]);</span><br><span class="line">&#125;);</span><br><span class="line">	</span><br><span class="line"><span class="built_in">module</span>.exports = webpackDevConf;</span><br></pre></td></tr></table></figure>
+<p>然后删除webpack.base.conf.js中对应的代码</p>
+<ul>
+<li><p>修改package.json中script中start<br>“start”: “cross-env NODE_ENV=development node bin/www”</p>
+</li>
+<li><p>修改app.js,添加环境变量判断，将开发使用的中间件添加到条件成立时执行，改为如下：</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="keyword">const</span> webpackConfig = <span class="built_in">require</span>(<span class="string">'./build/webpack.base.conf'</span>);</span><br><span class="line">	</span><br><span class="line"><span class="keyword">const</span> app = express();<span class="comment">// 创建一个express实例</span></span><br><span class="line">	</span><br><span class="line"><span class="keyword">if</span>(app.get(<span class="string">'env'</span>) == <span class="string">'development'</span>)&#123;  </span><br><span class="line">    <span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line">    <span class="keyword">const</span> webpackConfig = <span class="built_in">require</span>(<span class="string">'./build/webpack.dev.conf'</span>);</span><br><span class="line">     <span class="comment">// 调用webpack并把配置传递过去 </span></span><br><span class="line">    <span class="keyword">const</span> compiler = webpack(webpackConfig);  </span><br><span class="line">    <span class="comment">// 使用 webpack-dev-middleware 中间件  </span></span><br><span class="line">    <span class="keyword">const</span> devMiddleware = <span class="built_in">require</span>(<span class="string">'webpack-dev-middleware'</span>)(compiler, &#123;   </span><br><span class="line">       	publicPath: <span class="string">'/'</span>,   </span><br><span class="line">       	stats: &#123;      </span><br><span class="line">       		colors: <span class="literal">true</span>,      </span><br><span class="line">       		chunks: <span class="literal">false</span>    </span><br><span class="line">       	&#125;  </span><br><span class="line">    &#125;);    </span><br><span class="line">    app.use(devMiddleware);  </span><br><span class="line">    app.use(<span class="built_in">require</span>(<span class="string">"webpack-hot-middleware"</span>)(compiler));  </span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line"><span class="built_in">module</span>.exports = app;</span><br></pre></td></tr></table></figure>
+<h4 id="四-添加路由实现单页面"><a href="#四-添加路由实现单页面" class="headerlink" title="四.添加路由实现单页面"></a>四.添加路由实现单页面</h4><ul>
+<li>按照下图添加文件夹和文件</li>
+</ul>
+<p><img src="http://alfierichou1-1253852921.cosgz.myqcloud.com/vue.js-express/src.png" alt="src"></p>
+<ul>
+<li>修改main.js</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">"vue"</span>;</span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router/index'</span>;<span class="comment">//引入路由配置</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">"./app"</span>;</span><br><span class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">"vue-router"</span>;</span><br><span class="line">	</span><br><span class="line">Vue.config.debug = <span class="literal">true</span>;<span class="comment">//开启错误提示</span></span><br><span class="line">	</span><br><span class="line">Vue.use(VueRouter);</span><br><span class="line">	</span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el:<span class="string">'#app'</span>, </span><br><span class="line">    router: router,<span class="comment">//添加路由配置</span></span><br><span class="line">    render:<span class="function"><span class="params">h</span>=&gt;</span> h(App)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改app.vue</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">   	<span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">   		<span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined">  </span></span><br><span class="line"><span class="undefined">     body&#123;color:red;&#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>配置路由文件</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> VueRouter <span class="keyword">from</span> <span class="string">"vue-router"</span>;</span><br><span class="line"><span class="keyword">import</span> Index <span class="keyword">from</span> <span class="string">"../views/Index/index"</span>;</span><br><span class="line"><span class="keyword">import</span> User <span class="keyword">from</span> <span class="string">"../views/User/user"</span>;</span><br><span class="line">	</span><br><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">&#123;</span><br><span class="line">     path:<span class="string">'/'</span>, <span class="attr">component</span>:Index</span><br><span class="line">&#125;,</span><br><span class="line">&#123; </span><br><span class="line">    path:<span class="string">'/user'</span>, <span class="attr">component</span>:User</span><br><span class="line">&#125;];</span><br><span class="line">	</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> VueRouter(&#123; <span class="attr">mode</span>: <span class="string">'history'</span>, routes&#125;);</span><br><span class="line">	</span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>index.vue和user.vue</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span>this index page<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span>this user page<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行npm install –save connect-history-api-fallback，然后在app.js中加入</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> history = <span class="built_in">require</span>(<span class="string">'connect-history-api-fallback'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.use(history());</span><br></pre></td></tr></table></figure>
+<p>//放在app.use(devMiddleware);之前才有效</p>
+<p>接下来就进入127.0.0.1:3000见证奇迹吧！</p>
+<p><img src="http://alfierichou1-1253852921.cosgz.myqcloud.com/vue.js-express/index.png" alt="index"></p>
+<p>访问127.0.0.1:3000/user</p>
+<p><img src="http://alfierichou1-1253852921.cosgz.myqcloud.com/vue.js-express/user.png" alt="user"></p>
+<h4 id="五-生成打包环境"><a href="#五-生成打包环境" class="headerlink" title="五.生成打包环境"></a>五.生成打包环境</h4><ul>
+<li><p>运行 npm instal shelljs ora –save-dev</p>
+</li>
+<li><p>在build文件下创建一个webpack.prod.conf.js</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="keyword">const</span> merge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>);</span><br><span class="line"><span class="comment">// 引入基本配置</span></span><br><span class="line"><span class="keyword">const</span> webpackConf = <span class="built_in">require</span>(<span class="string">'./webpack.base.conf'</span>);</span><br><span class="line"><span class="keyword">const</span> prodWebpackConf = merge(webpackConf,&#123; </span><br><span class="line">    output:&#123;  <span class="attr">publicPath</span>:<span class="string">'/'</span>,  <span class="attr">filename</span>: <span class="string">'static/js/[name].[hash].js'</span> &#125;,</span><br><span class="line">    plugins:[ </span><br><span class="line">         <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123;  </span><br><span class="line">            compress: &#123;    <span class="attr">warnings</span>: <span class="literal">false</span>   &#125; </span><br><span class="line">        &#125;)</span><br><span class="line">    ]&#125;);</span><br><span class="line"><span class="built_in">module</span>.exports = prodWebpackConf;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在build文件下创建一个build.js文件</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/shelljs/shelljs</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'shelljs/global'</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">var</span> ora = <span class="built_in">require</span>(<span class="string">'ora'</span>);</span><br><span class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="keyword">var</span> webpackConf = <span class="built_in">require</span>(<span class="string">'./webpack.prod.conf'</span>);</span><br><span class="line"><span class="built_in">console</span>.log( <span class="string">'  Tip:\n'</span> + <span class="string">'  Built files are meant to be served over an HTTP server.\n'</span> + <span class="string">'  Opening index.html over file:// won\'t work.\n'</span>);</span><br><span class="line"><span class="keyword">var</span> spinner = ora(<span class="string">'building for production...'</span>);</span><br><span class="line">spinner.start();</span><br><span class="line"><span class="keyword">var</span> assetsPath = path.join(<span class="string">'/'</span>, <span class="string">'static'</span>);</span><br><span class="line">rm(<span class="string">'-rf'</span>, assetsPath);</span><br><span class="line">mkdir(<span class="string">'-p'</span>, assetsPath);</span><br><span class="line">cp(<span class="string">'-R'</span>, <span class="string">'static/'</span>, assetsPath);</span><br><span class="line">webpack(webpackConf, <span class="function"><span class="keyword">function</span> (<span class="params">err, stats</span>) </span>&#123; </span><br><span class="line">    spinner.stop();</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">throw</span> err </span><br><span class="line">    process.stdout.write(stats.toString(&#123;   </span><br><span class="line">        colors: <span class="literal">true</span>,   </span><br><span class="line">        modules: <span class="literal">false</span>,   </span><br><span class="line">        children: <span class="literal">false</span>,   </span><br><span class="line">        chunks: <span class="literal">false</span>,   </span><br><span class="line">        chunkModules: <span class="literal">false</span>  </span><br><span class="line">    &#125;) + <span class="string">'\n'</span>)</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>在package.json的script中添加 “build”: “node build/build.js”</p>
+</li>
+<li><p>运行npm run build 之后会生成一下文件</p>
+</li>
+<li><p>修改app.js,在if(app.get(‘env’) == ‘development’){……}条件后添加else{app.use(express.static(‘output’));}</p>
+</li>
+<li><p>在package.json的script中添加 “prod”:”cross-env</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=production node bin/www&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>运行npm run prod 就可以查看成产环境了</p>
+</li>
+<li><p>PS：我的腾讯云挂了  图片先不传了</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue-js/">vue.js</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/09/八段代码掌握Promise/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          八段代码掌握Promise
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/21/淘宝镜像问题/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">淘宝镜像问题&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=O23IwUQBGiCNXl2N7qwt0rIwuuNlONPsTXUaErsj7Ie_7GWLgXpe!2105743534" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

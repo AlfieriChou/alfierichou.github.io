@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ajax笔记 - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言 现在在整理以前电脑上的一些笔记，发现了有很多有价值的东西，比如说，原生Ajax和jQuery-Ajax，feel jQuery-Ajax相对于原生Ajax而言，简直是一门艺术。 那我下面就先说说jquery-Ajax吧！看看是怎么样的一门艺术。">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ajax笔记">
+<meta property="og:url" content="http://github.com/AlfieriChou/2017/05/28/ajax笔记/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="前言 现在在整理以前电脑上的一些笔记，发现了有很多有价值的东西，比如说，原生Ajax和jQuery-Ajax，feel jQuery-Ajax相对于原生Ajax而言，简直是一门艺术。 那我下面就先说说jquery-Ajax吧！看看是怎么样的一门艺术。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-11T02:26:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ajax笔记">
+<meta name="twitter:description" content="前言 现在在整理以前电脑上的一些笔记，发现了有很多有价值的东西，比如说，原生Ajax和jQuery-Ajax，feel jQuery-Ajax相对于原生Ajax而言，简直是一门艺术。 那我下面就先说说jquery-Ajax吧！看看是怎么样的一门艺术。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-ajax笔记" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ajax笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/05/28/ajax笔记/" class="article-date">
+  <time datetime="2017-05-27T22:07:35.000Z" itemprop="datePublished">2017-05-28</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li>现在在整理以前电脑上的一些笔记，发现了有很多有价值的东西，比如说，原生Ajax和jQuery-Ajax，feel jQuery-Ajax相对于原生Ajax而言，简直是一门艺术。</li>
+<li>那我下面就先说说jquery-Ajax吧！看看是怎么样的一门艺术。</li>
+</ul>
+<a id="more"></a>
+<h3 id="load-url-data-cellback-载入远程HTML文件代码插入DOM中"><a href="#load-url-data-cellback-载入远程HTML文件代码插入DOM中" class="headerlink" title="load(url,[data],[cellback])载入远程HTML文件代码插入DOM中"></a>load(url,[data],[cellback])载入远程HTML文件代码插入DOM中</h3><ul>
+<li>我先将源码贴出来<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>jQuery-Ajax<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"id1"</span>&gt;</span>这是jQuery-Ajax实例<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"jAjax"</span>&gt;</span>button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">		$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">			$(<span class="string">"#jAjax"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">				$(<span class="string">"#id1"</span>).load(<span class="string">"http://alfierichou.top/2017/05/25/%E5%B0%86github-io%E9%83%A8%E7%BD%B2%E5%88%B0alfierichou-top%E4%B8%8A/ .article-title"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">responseText, textStatus, XMLHttpRequest</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">						<span class="keyword">this</span>;</span></span><br><span class="line"><span class="javascript">						<span class="built_in">console</span>.log(responseText);</span></span><br><span class="line"><span class="javascript">						<span class="comment">// console.log(textStatus);</span></span></span><br><span class="line"><span class="javascript">						<span class="comment">// console.log(XMLHttpRequest);</span></span></span><br><span class="line"><span class="undefined">				&#125;)</span></span><br><span class="line"><span class="undefined">			&#125;)</span></span><br><span class="line"><span class="undefined">		&#125;)</span></span><br><span class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>下面就说说结果吧！这里是用我自己的个人网站作为测试的，目的是让文章标题替换h2标签里边的内容，然后responseText打印整个页面的HTML结构和源码。</li>
+<li>整个过程即简介又层次清晰。使用了load(url,[data],[cellback]);<ol>
+<li>url(string)：请求HTML页面的URL地址。</li>
+<li>data(map)：（可选参数）发送至服务器的key/value数据。</li>
+<li>callback(callback)：（可选参数）请求完成时的回调函数。</li>
+</ol>
+</li>
+<li>这个方法默认使用GET方式传递，如果[data]参数有传递数据进去，就会自动转换成POST方式。<h4 id="jQuery-get-url-data-callback-使用get方式进行异步请求"><a href="#jQuery-get-url-data-callback-使用get方式进行异步请求" class="headerlink" title="jQuery.get(url,[data],[callback]);使用get方式进行异步请求"></a>jQuery.get(url,[data],[callback]);使用get方式进行异步请求</h4></li>
+</ul>
+<ul>
+<li>惯例先贴源代码<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>jQuery-Ajax-GET<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"jAjax"</span>&gt;</span>button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">		$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">			$(<span class="string">"#jAjax"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">				$.get(<span class="string">"http://alfierichou.top/2017/05/25/%E5%B0%86github-io%E9%83%A8%E7%BD%B2%E5%88%B0alfierichou-top%E4%B8%8A/"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">data, textStatus</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">						<span class="comment">// 返回的 data 可以是 xmlDoc, jsonObj, html, text, 等等</span></span></span><br><span class="line"><span class="javascript">						<span class="keyword">this</span>;</span></span><br><span class="line"><span class="javascript">						<span class="built_in">console</span>.log(data);</span></span><br><span class="line"><span class="javascript">						<span class="comment">// console.log(textStatus);</span></span></span><br><span class="line"><span class="undefined">				&#125;)</span></span><br><span class="line"><span class="undefined">			&#125;)</span></span><br><span class="line"><span class="undefined">		&#125;)</span></span><br><span class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>打印结果是整个页面的data，就是这个页面的HTML结构和源码。<ol>
+<li>url(String):  发送请求的URL地址。</li>
+<li>data(Map): (可选)要发送给服务器的数据，以 Key/value的键值对形式表示，会做为QueryString附加到请求URL中。</li>
+<li>callback(Function): (可选)载入成功时回调函数(只有当Response的返回状态是success才是调用该方法)。</li>
+</ol>
+</li>
+</ul>
+<h4 id="jQuery-post-url-data-callback-type-：使用POST方式来进行异步请求"><a href="#jQuery-post-url-data-callback-type-：使用POST方式来进行异步请求" class="headerlink" title="jQuery.post(url,[data],[callback],[type])：使用POST方式来进行异步请求"></a>jQuery.post(url,[data],[callback],[type])：使用POST方式来进行异步请求</h4><ul>
+<li>参数<ol>
+<li>url(String):发送请求的URL地址。</li>
+<li>data(Map):(可选)要发送给服务器的数据，以Key/value的键值对形式表示。</li>
+<li>callback(Function):(可选)载入成功时回调函数(只有当Response的返回状态是success才是调用该方法)。</li>
+<li>type(String):(可选)官方的说明是：Type of data to be sent。其实应该为客户端请求的类型(JSON,XML,等等)</li>
+</ol>
+</li>
+</ul>
+<h4 id="jQuery-getScript-url-callback-通过get方式请求载入并执行一个JavaScript文件"><a href="#jQuery-getScript-url-callback-通过get方式请求载入并执行一个JavaScript文件" class="headerlink" title="jQuery.getScript(url,[callback]):通过get方式请求载入并执行一个JavaScript文件"></a>jQuery.getScript(url,[callback]):通过get方式请求载入并执行一个JavaScript文件</h4><ul>
+<li>参数<ol>
+<li>url(String):待载入JS文件地址。</li>
+<li>callback(Function):(可选)成功载入后回调函数。<h4 id="jQuery-ajax事件"><a href="#jQuery-ajax事件" class="headerlink" title="jQuery.ajax事件"></a>jQuery.ajax事件</h4></li>
+</ol>
+</li>
+<li><p>局部事件-在每次ajax请求时在方法内定义</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> $.ajax(&#123;</span><br><span class="line"></span><br><span class="line">beforeSend: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 处理beforeSend事件</span></span><br><span class="line">&#125;,</span><br><span class="line">complete: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 处理complete事件</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>全局事件-每次ajax请求都会触发，会向DOM中所有元素广播，getScript()就是全局事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#loading"</span>).bind(<span class="string">"ajaxSend"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$(<span class="keyword">this</span>).show();</span><br><span class="line">&#125;).bind(<span class="string">"ajaxComplete"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$(<span class="keyword">this</span>).hide();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>或者是<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#loading"</span>).ajaxStart(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$(<span class="keyword">this</span>).show();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>如何禁用全局事件，设置global选项<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">	url: <span class="string">"index.html"</span>,</span><br><span class="line">	global: <span class="literal">false</span>,<span class="comment">// 禁用全局Ajax事件.</span></span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="jQuery-ajax-options-：通过http请求加载远程数据"><a href="#jQuery-ajax-options-：通过http请求加载远程数据" class="headerlink" title="jQuery.ajax(options)：通过http请求加载远程数据"></a>jQuery.ajax(options)：通过http请求加载远程数据</h4><ul>
+<li>获取文章题目<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">	type: <span class="string">"get"</span>,</span><br><span class="line">	url: <span class="string">"http://www.alfierichou.top"</span>,</span><br><span class="line">	beforeSend: <span class="function"><span class="keyword">function</span>(<span class="params">XMLHttpRequest</span>)</span>&#123;</span><br><span class="line">	<span class="comment">//ShowLoading();</span></span><br><span class="line">	&#125;,</span><br><span class="line">	success: <span class="function"><span class="keyword">function</span>(<span class="params">data, textStatus</span>)</span>&#123;</span><br><span class="line">		$(<span class="string">".ajax.ajaxResult"</span>).html(<span class="string">""</span>);</span><br><span class="line">		$(<span class="string">"item"</span>,data).each(<span class="function"><span class="keyword">function</span>(<span class="params">i, domEle</span>)</span>&#123;</span><br><span class="line">			$(<span class="string">".ajax.ajaxResult"</span>).append(<span class="string">"&lt;li&gt;"</span>+$(domEle).children(<span class="string">"article-title"</span>).text()+<span class="string">"&lt;/li&gt;"</span>);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;,</span><br><span class="line">	complete: <span class="function"><span class="keyword">function</span>(<span class="params">XMLHttpRequest, textStatus</span>)</span>&#123;</span><br><span class="line">	<span class="comment">//HideLoading();</span></span><br><span class="line">	&#125;,</span><br><span class="line">	error: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//请求出错处理</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/25/19个JavaScript常用的简写技术/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          19个JavaScript常用的简写技术
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/25/将github-io部署到alfierichou-top上/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">将github.io部署到alfierichou.top上&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=O23IwUQBGiCNXl2N7qwt0rIwuuNlONPsTXUaErsj7Ie_7GWLgXpe!2105743534" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

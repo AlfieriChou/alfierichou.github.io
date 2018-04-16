@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>对JavaScript操作数组的研究 - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="array数组 concat()——连接两个或更多的数组，并返回结果具体使用——先定义一个数组，然在通过arr.concat(arr2)实现两个数组的拼接">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对JavaScript操作数组的研究">
+<meta property="og:url" content="http://github.com/AlfieriChou/2017/07/05/对JavaScript操作数组的研究/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="array数组 concat()——连接两个或更多的数组，并返回结果具体使用——先定义一个数组，然在通过arr.concat(arr2)实现两个数组的拼接">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-07-05T15:31:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对JavaScript操作数组的研究">
+<meta name="twitter:description" content="array数组 concat()——连接两个或更多的数组，并返回结果具体使用——先定义一个数组，然在通过arr.concat(arr2)实现两个数组的拼接">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-对JavaScript操作数组的研究" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      对JavaScript操作数组的研究
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/07/05/对JavaScript操作数组的研究/" class="article-date">
+  <time datetime="2017-07-05T15:25:00.000Z" itemprop="datePublished">2017-07-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="array数组"><a href="#array数组" class="headerlink" title="array数组"></a>array数组</h3><ul>
+<li>concat()——连接两个或更多的数组，并返回结果<br>具体使用——先定义一个数组，然在通过arr.concat(arr2)实现两个数组的拼接</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><p>join()——把数组的所有元素放入一个字符串。元素通过指定的分隔符来进行分割<br>具体使用——arr.join(“.”)这是用.来分割字符串中的每一个元素</p>
+</li>
+<li><p>pop()——删除数组中的最后一个元素<br>具体使用——arr.pop()将数组中放入最后一个元素删除（可以用数据结构中的栈来理解-先进后出）</p>
+</li>
+<li><p>push()——向数组的末尾添加一个或者多个元素，并返回新的长度<br>具体使用——arr.push(“jamas”)这是向数组中添加一个jamas元素（这个功能可以用添加一段HTML代码这是经常使用的）这个也可以用数据结构中的栈来理解</p>
+</li>
+<li><p>reverse()——颠倒数组中元素的顺序<br>具体使用——arr.reverse()将数组中的元素倒序排列</p>
+</li>
+<li><p>shift()——将数组中的第一个元素删除，并返回第一个元素的值<br>具体使用——arr.shift()   （删除最后一个是采用pop()）</p>
+</li>
+<li><p>slice()——可以从已有的数组中返回选定的元素（重点）<br>具体使用——arr.slice(start,end)<br>例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">6</span>)</span><br><span class="line">arr[<span class="number">0</span>] = <span class="string">"George"</span></span><br><span class="line">arr[<span class="number">1</span>] = <span class="string">"John"</span></span><br><span class="line">arr[<span class="number">2</span>] = <span class="string">"Thomas"</span></span><br><span class="line">arr[<span class="number">3</span>] = <span class="string">"James"</span></span><br><span class="line">arr[<span class="number">4</span>] = <span class="string">"Adrew"</span></span><br><span class="line">arr[<span class="number">5</span>] = <span class="string">"Martin"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(arr )</span><br><span class="line"><span class="built_in">console</span>.log(arr.slice(<span class="number">2</span>,<span class="number">4</span>) )</span><br><span class="line"><span class="built_in">console</span>.log(arr)	<span class="comment">//document.write</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>sort()——对数组元素进行排序<br>具体使用——arr.sort()   （说明：对数字排序要注意，这个排序是采用字典序排序，如果要按大小排序的话，就要使用es6:arr.sort((a, b) =&gt; a - b)<br>es5:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortNumber</span>(<span class="params">a,b</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">return</span> a - b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">6</span>)</span><br><span class="line">arr[<span class="number">0</span>] = <span class="string">"10"</span></span><br><span class="line">arr[<span class="number">1</span>] = <span class="string">"5"</span></span><br><span class="line">arr[<span class="number">2</span>] = <span class="string">"40"</span></span><br><span class="line">arr[<span class="number">3</span>] = <span class="string">"25"</span></span><br><span class="line">arr[<span class="number">4</span>] = <span class="string">"1000"</span></span><br><span class="line">arr[<span class="number">5</span>] = <span class="string">"1"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(arr + <span class="string">"&lt;br /&gt;"</span>)</span><br><span class="line"><span class="built_in">document</span>.write(arr.sort(sortNumber))</span><br><span class="line">）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>splice()——向/从数组中添加/删除项目，然后返回被删除的项目（重点）<br>具体使用——arr.splice(index,howmany,item1…itemX)<br>这个通过代码段说明比较好<br>例子1：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">6</span>)</span><br><span class="line">arr[<span class="number">0</span>] = <span class="string">"George"</span></span><br><span class="line">arr[<span class="number">1</span>] = <span class="string">"John"</span></span><br><span class="line">arr[<span class="number">2</span>] = <span class="string">"Thomas"</span></span><br><span class="line">arr[<span class="number">3</span>] = <span class="string">"James"</span></span><br><span class="line">arr[<span class="number">4</span>] = <span class="string">"Adrew"</span></span><br><span class="line">arr[<span class="number">5</span>] = <span class="string">"Martin"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(arr + <span class="string">"&lt;br /&gt;"</span>)</span><br><span class="line">arr.splice(<span class="number">2</span>,<span class="number">0</span>,<span class="string">"William"</span>)</span><br><span class="line"><span class="built_in">document</span>.write(arr + <span class="string">"&lt;br /&gt;"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// George,John,Thomas,James,Adrew,Martin</span></span><br><span class="line"><span class="comment">// George,John,William,Thomas,James,Adrew,Martin</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>例子2：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Let arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">6</span>)</span><br><span class="line">arr[<span class="number">0</span>] = <span class="string">"George"</span></span><br><span class="line">arr[<span class="number">1</span>] = <span class="string">"John"</span></span><br><span class="line">arr[<span class="number">2</span>] = <span class="string">"Thomas"</span></span><br><span class="line">arr[<span class="number">3</span>] = <span class="string">"James"</span></span><br><span class="line">arr[<span class="number">4</span>] = <span class="string">"Adrew"</span></span><br><span class="line">arr[<span class="number">5</span>] = <span class="string">"Martin"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(arr + <span class="string">"&lt;br /&gt;"</span>)</span><br><span class="line">arr.splice(<span class="number">2</span>,<span class="number">1</span>,<span class="string">"William"</span>)</span><br><span class="line"><span class="built_in">document</span>.write(arr)</span><br><span class="line"></span><br><span class="line"><span class="comment">// George,John,Thomas,James,Adrew,Martin</span></span><br><span class="line"><span class="comment">// George,John,William,James,Adrew,Martin</span></span><br></pre></td></tr></table></figure></p>
+<p>例子3：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">6</span>)</span><br><span class="line">arr[<span class="number">0</span>] = <span class="string">"George"</span></span><br><span class="line">arr[<span class="number">1</span>] = <span class="string">"John"</span></span><br><span class="line">arr[<span class="number">2</span>] = <span class="string">"Thomas"</span></span><br><span class="line">arr[<span class="number">3</span>] = <span class="string">"James"</span></span><br><span class="line">arr[<span class="number">4</span>] = <span class="string">"Adrew"</span></span><br><span class="line">arr[<span class="number">5</span>] = <span class="string">"Martin"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(arr + <span class="string">"&lt;br /&gt;"</span>)</span><br><span class="line">arr.splice(<span class="number">2</span>,<span class="number">3</span>,<span class="string">"William"</span>)</span><br><span class="line"><span class="built_in">document</span>.write(arr)</span><br><span class="line"></span><br><span class="line"><span class="comment">// George,John,Thomas,James,Adrew,Martin</span></span><br><span class="line"><span class="comment">// George,John,William,Martin</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>toSource()——表示对象写源代码（这个只支持gecko浏览器Firefox，了解一下就行了）</p>
+</li>
+<li><p>toString()——可以将数组转换成字符串，并返回结果。<br>具体使用——arr.toString()</p>
+</li>
+<li><p>toLocaleString()——把数组转换为本地字符串<br>具体使用——arr.toLocaleString()<br>{toString和toLocaleString有什么区别，我也不知道，不过自己在用的时候一般都是在用的toString}</p>
+</li>
+<li><p>unshift()——向数组的开头添加一个或更多的元素，并返回新的长度。（无法再IE中使用）<br>具体使用——arr.unshift()</p>
+</li>
+<li><p>valueOf()——返回array对象的原始值。<br>具体使用——arr.valueOf()</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/07/20/如何用JavaScript生成一个数组/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          如何用JavaScript生成一个数组
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/07/02/基于node-js的问答平台/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">基于node.js的问答平台&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=O23IwUQBGiCNXl2N7qwt0rIwuuNlONPsTXUaErsj7Ie_7GWLgXpe!2105743534" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

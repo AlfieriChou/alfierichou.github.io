@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>数组拼接问题 - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="例子123var arr1 = [&apos;a&apos;];var arr2 = [&apos;b&apos;, &apos;c&apos;];var arr3 = [&apos;c&apos;, [&apos;d&apos;], &apos;e&apos;, undefined, null]; 代码段中修改部分前面以星号(*)标记出。">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组拼接问题">
+<meta property="og:url" content="http://github.com/AlfieriChou/2017/12/05/数组拼接问题/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="例子123var arr1 = [&apos;a&apos;];var arr2 = [&apos;b&apos;, &apos;c&apos;];var arr3 = [&apos;c&apos;, [&apos;d&apos;], &apos;e&apos;, undefined, null]; 代码段中修改部分前面以星号(*)标记出。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-12-05T12:07:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数组拼接问题">
+<meta name="twitter:description" content="例子123var arr1 = [&apos;a&apos;];var arr2 = [&apos;b&apos;, &apos;c&apos;];var arr3 = [&apos;c&apos;, [&apos;d&apos;], &apos;e&apos;, undefined, null]; 代码段中修改部分前面以星号(*)标记出。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-数组拼接问题" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数组拼接问题
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/12/05/数组拼接问题/" class="article-date">
+  <time datetime="2017-12-05T12:01:38.000Z" itemprop="datePublished">2017-12-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr1 = [<span class="string">'a'</span>];</span><br><span class="line"><span class="keyword">var</span> arr2 = [<span class="string">'b'</span>, <span class="string">'c'</span>];</span><br><span class="line"><span class="keyword">var</span> arr3 = [<span class="string">'c'</span>, [<span class="string">'d'</span>], <span class="string">'e'</span>, <span class="literal">undefined</span>, <span class="literal">null</span>];</span><br></pre></td></tr></table></figure>
+<p>代码段中修改部分前面以星号(*)标记出。</p>
+<a id="more"></a>
+<h4 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h4><ul>
+<li>执行：arr1.concat(arr2, arr3);</li>
+<li>返回：[ ‘a’, ‘b’, ‘c’, ‘c’, [ ‘d’ ], ‘e’, undefined, null ]</li>
+</ul>
+<h4 id="考虑重复"><a href="#考虑重复" class="headerlink" title="考虑重复"></a>考虑重复</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> concat = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// concat arr1 and arr2 without duplication.</span></span><br><span class="line">  <span class="keyword">var</span> concat_ = <span class="function"><span class="keyword">function</span>(<span class="params">arr1, arr2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=arr2.length<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--) &#123;</span><br><span class="line">      arr1.indexOf(arr2[i]) === <span class="number">-1</span> ? arr1.push(arr2[i]) : <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// concat arbitrary arrays.</span></span><br><span class="line">  <span class="comment">// Instead of alter supplied arrays, return a new one.</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = arr.slice();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="built_in">arguments</span>.length<span class="number">-1</span>;i&gt;=<span class="number">1</span>;i--) &#123;</span><br><span class="line">      concat_(result, <span class="built_in">arguments</span>[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行：concat(arr1, arr2, arr3);</li>
+<li>返回：[ ‘a’, null, undefined, ‘e’, [ ‘d’ ], ‘c’, ‘b’ ]</li>
+</ul>
+<h4 id="处理undefined和null"><a href="#处理undefined和null" class="headerlink" title="处理undefined和null"></a>处理undefined和null</h4><p>这里的undefined可能由数组本身存在的undefined元素引起，也可能由于delete引起。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> concat = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// concat arr1 and arr2 without duplication.</span></span><br><span class="line">  <span class="keyword">var</span> concat_ = <span class="function"><span class="keyword">function</span>(<span class="params">arr1, arr2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=arr2.length<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--) &#123;</span><br><span class="line">*      <span class="keyword">if</span> (arr2[i] === <span class="literal">undefined</span> || arr2[i] === <span class="literal">null</span>) &#123;</span><br><span class="line">*        <span class="keyword">continue</span>;</span><br><span class="line">*      &#125;</span><br><span class="line">      arr1.indexOf(arr2[i]) === <span class="number">-1</span> ? arr1.push(arr2[i]) : <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// concat arbitrary arrays.</span></span><br><span class="line">  <span class="comment">// Instead of alter supplied arrays, return a new one.</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = arr.slice();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="built_in">arguments</span>.length<span class="number">-1</span>;i&gt;=<span class="number">1</span>;i--) &#123;</span><br><span class="line">      concat_(result, <span class="built_in">arguments</span>[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行：concat(arr1, arr2, arr3);</li>
+<li><p>返回：[ ‘a’, ‘e’, [ ‘d’ ], ‘c’, ‘b’ ]</p>
+</li>
+<li><p>执行：delete arr3[2]; concat(arr1, arr2, arr3);</p>
+</li>
+<li>返回：[ ‘a’, [ ‘d’ ], ‘c’, ‘b’ ]</li>
+</ul>
+<h4 id="考虑数组"><a href="#考虑数组" class="headerlink" title="考虑数组"></a>考虑数组</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> concat = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">// concat arr1 and arr2 without duplication.</span></span><br><span class="line">  <span class="keyword">var</span> concat_ = <span class="function"><span class="keyword">function</span>(<span class="params">arr1, arr2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=arr2.length<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--) &#123;</span><br><span class="line">*      <span class="comment">// escape undefined and null element</span></span><br><span class="line">*      <span class="keyword">if</span> (arr2[i] === <span class="literal">undefined</span> || arr2[i] === <span class="literal">null</span>) &#123;</span><br><span class="line">*        <span class="keyword">continue</span>;</span><br><span class="line">*      &#125;</span><br><span class="line">*      <span class="comment">// recursive deal with array element</span></span><br><span class="line">*      <span class="comment">// can also handle multi-level array wrapper</span></span><br><span class="line">*      <span class="keyword">if</span> (classof(arr2[i]) === <span class="string">'Array'</span>) &#123;</span><br><span class="line">*        <span class="keyword">for</span> (<span class="keyword">var</span> j=arr2[i].length<span class="number">-1</span>;j&gt;=<span class="number">0</span>;j--) &#123;</span><br><span class="line">*          concat_(arr1, arr2[i][j]);</span><br><span class="line">*        &#125;</span><br><span class="line">*        <span class="keyword">continue</span>;</span><br><span class="line">*      &#125;</span><br><span class="line">      arr1.indexOf(arr2[i]) === <span class="number">-1</span> ? arr1.push(arr2[i]) : <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">// concat arbitrary arrays.</span></span><br><span class="line">  <span class="comment">// Instead of alter supplied arrays, return a new one.</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = arr.slice();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="built_in">arguments</span>.length<span class="number">-1</span>;i&gt;=<span class="number">1</span>;i--) &#123;</span><br><span class="line">      concat_(result, <span class="built_in">arguments</span>[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行：concat(arr1, arr2, arr3)</li>
+<li>返回：[ ‘a’, ‘d’, ‘c’, ‘b’ ]</li>
+<li>该代码也能够处理多层数组的解析。</li>
+</ul>
+<h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><p>Native Javascript的concat操作并不改变原始数组，因此在上面提供的方案中，也不对原数组进行修改，而是返回新的数组。</p>
+<h4 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> merge = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.concat.apply([], <span class="built_in">arguments</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">merge([<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>],[<span class="number">3</span>,<span class="number">4</span>],[<span class="number">5</span>,<span class="number">6</span>]);</span><br><span class="line"><span class="comment">//[1, 2, 4, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/06/nodejs操作MySQL/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          nodejs操作MySQL
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/23/nginx配置方向代理/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">nginx配置反向代理绑定二级域名&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=O23IwUQBGiCNXl2N7qwt0rIwuuNlONPsTXUaErsj7Ie_7GWLgXpe!2105743534" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

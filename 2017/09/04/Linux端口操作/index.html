@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Linux端口操作 - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="查看那些端口被打开 netstat -anp 关闭端口：  iptables -A INPUT -p tcp —drop 端口号 -j DROP iptables -A OUTPUT -p tcp —dport 端口号 -j DROP">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux端口操作">
+<meta property="og:url" content="http://github.com/AlfieriChou/2017/09/04/Linux端口操作/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="查看那些端口被打开 netstat -anp 关闭端口：  iptables -A INPUT -p tcp —drop 端口号 -j DROP iptables -A OUTPUT -p tcp —dport 端口号 -j DROP">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-09-04T07:36:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux端口操作">
+<meta name="twitter:description" content="查看那些端口被打开 netstat -anp 关闭端口：  iptables -A INPUT -p tcp —drop 端口号 -j DROP iptables -A OUTPUT -p tcp —dport 端口号 -j DROP">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-Linux端口操作" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Linux端口操作
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/09/04/Linux端口操作/" class="article-date">
+  <time datetime="2017-09-04T07:27:13.000Z" itemprop="datePublished">2017-09-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>查看那些端口被打开 netstat -anp</li>
+<li><p>关闭端口：</p>
+<ul>
+<li>iptables -A INPUT -p tcp —drop 端口号 -j DROP</li>
+<li>iptables -A OUTPUT -p tcp —dport 端口号 -j DROP</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><p>打开端口号：</p>
+<ul>
+<li>iptables -A INPUT -ptcp —dport 端口号 -j ACCEPT</li>
+</ul>
+</li>
+<li><p>Linux打开端口命令使用方法：</p>
+<ul>
+<li>nc -lp 23 &amp; (打开23端口，即Telnet)（需要root权限）</li>
+<li>netstat -an | grep 23(查看是否打开23端口）</li>
+</ul>
+</li>
+<li>查看被占用的端口：netstat -tln  /   netstat -tln | grep 8080</li>
+<li>查看端口属于哪个程序 端口被哪个进程占用  lsfo -i :8080（需要用yum先安装lsof命令[yum install lsof]）</li>
+<li>杀死占用端口进程 kill -9 进程id </li>
+</ul>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/08/mongoose参考手册/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          mongoose参考手册
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/04/centos7用户管理/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">centos7用户管理&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=O23IwUQBGiCNXl2N7qwt0rIwuuNlONPsTXUaErsj7Ie_7GWLgXpe!2105743534" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
