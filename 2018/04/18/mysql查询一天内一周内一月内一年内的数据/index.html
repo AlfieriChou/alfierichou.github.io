@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>mysql查询一天内一周内一月内一年内的数据 - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言 mysql数据统计，需要用到一周内和一月内的数据。由于之前不是主MySQL的，所以很抱歉，当然不会写哈~ 那么，就先Google一波吧！">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql查询一天内一周内一月内一年内的数据">
+<meta property="og:url" content="http://github.com/AlfieriChou/2018/04/18/mysql查询一天内一周内一月内一年内的数据/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="前言 mysql数据统计，需要用到一周内和一月内的数据。由于之前不是主MySQL的，所以很抱歉，当然不会写哈~ 那么，就先Google一波吧！">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-18T03:35:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql查询一天内一周内一月内一年内的数据">
+<meta name="twitter:description" content="前言 mysql数据统计，需要用到一周内和一月内的数据。由于之前不是主MySQL的，所以很抱歉，当然不会写哈~ 那么，就先Google一波吧！">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-mysql查询一天内一周内一月内一年内的数据" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mysql查询一天内一周内一月内一年内的数据
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2018/04/18/mysql查询一天内一周内一月内一年内的数据/" class="article-date">
+  <time datetime="2018-04-18T03:30:57.000Z" itemprop="datePublished">2018-04-18</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/mysql/">mysql</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li>mysql数据统计，需要用到一周内和一月内的数据。由于之前不是主MySQL的，所以很抱歉，当然不会写哈~ 那么，就先Google一波吧！</li>
+</ul>
+<a id="more"></a>
+<ol>
+<li><p>如果输出的时间是格式化时间 DATE_SUB() 2018-04-18</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> zhazhayang</span><br><span class="line"><span class="keyword">where</span> created_at&gt;<span class="keyword">DATE_SUB</span>(<span class="keyword">CURDATE</span>(), <span class="built_in">INTERVAL</span> <span class="number">1</span> <span class="keyword">DAY</span>)</span><br><span class="line"><span class="keyword">where</span> created_at&gt;<span class="keyword">DATE_SUB</span>(<span class="keyword">CURDATE</span>(), <span class="built_in">INTERVAL</span> <span class="number">1</span> <span class="keyword">WEEK</span>)</span><br><span class="line"><span class="keyword">where</span> created_at&gt;<span class="keyword">DATE_SUB</span>(<span class="keyword">CURDATE</span>(), <span class="built_in">INTERVAL</span> <span class="number">1</span> <span class="keyword">MONTH</span>)</span><br><span class="line"><span class="keyword">where</span> created_at&gt;<span class="keyword">DATE_SUB</span>(<span class="keyword">CURDATE</span>(), <span class="built_in">INTERVAL</span> <span class="number">1</span> <span class="keyword">YEAR</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="2">
+<li><p>如果输出的时间是时间戳 那么需要用UNIX_TIMESTAMP()转化为UNIX时间戳形式</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM zhazhayang</span><br><span class="line">where created_at&gt;UNIX_TIMESTAMP(DATE_SUB(CURDATE(), INTERVAL 1 DAY))</span><br><span class="line">where created_at&gt;UNIX_TIMESTAMP(DATE_SUB(CURDATE(), INTERVAL 1 WEEK))</span><br><span class="line">where created_at&gt;UNIX_TIMESTAMP(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))</span><br><span class="line">where created_at&gt;UNIX_TIMESTAMP(DATE_SUB(CURDATE(), INTERVAL 1 YEAR))</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="3">
+<li><p>当天或当日插入的数据</p>
+<ul>
+<li><p>format对比 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zhazhayang` WHERE DATE_FORMAT(created_at,&apos;%Y-%m-%d&apos;) = date_format(now(),&apos;%Y-%m-%d&apos;)&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>* format简写
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zhazhayang` WHERE created_at &gt;= date_format(NOW(),&apos;%Y-%m-%d&apos;);</span><br></pre></td></tr></table></figure>
+
+
+* *函数判断*
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zhazhayang` WHERE DATEDIFF(created_at,NOW()) =0;</span><br></pre></td></tr></table></figure>
+
+
+* 时间戳判断
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zhazhayang` WHERE created_at BETWEEN (UNIX_TIMESTAMP(now()-86440)) AND now();</span><br></pre></td></tr></table></figure>
+</code></pre><ol start="4">
+<li><p>时间戳和日期的转换</p>
+<ul>
+<li>时间戳转日期</li>
+</ul>
+</li>
+</ol>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select from_unixtime(1524022106);</span><br></pre></td></tr></table></figure>
+
+
+* 日期转时间戳
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select unix_timestamp(&apos;2018-04-16&apos;);</span><br></pre></td></tr></table></figure>
+</code></pre>
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/11/docker常用命令/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">docker常用命令&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
