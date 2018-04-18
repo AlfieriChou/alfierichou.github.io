@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="AlfieriChou">
 <meta property="og:description" content="前言 mysql数据统计，需要用到一周内和一月内的数据。由于之前不是主MySQL的，所以很抱歉，当然不会写哈~ 那么，就先Google一波吧！">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-18T03:35:09.000Z">
+<meta property="og:updated_time" content="2018-04-18T03:46:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql查询一天内一周内一月内一年内的数据">
 <meta name="twitter:description" content="前言 mysql数据统计，需要用到一周内和一月内的数据。由于之前不是主MySQL的，所以很抱歉，当然不会写哈~ 那么，就先Google一波吧！">
@@ -101,24 +101,24 @@
 <li><p>当天或当日插入的数据</p>
 <ul>
 <li><p>format对比 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zhazhayang` WHERE DATE_FORMAT(created_at,&apos;%Y-%m-%d&apos;) = date_format(now(),&apos;%Y-%m-%d&apos;)&quot;);</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zhazhayang` WHERE DATE_FORMAT(created_at,&apos;%Y-%m-%d&apos;) = date_format(now(),&apos;%Y-%m-%d&apos;)&quot;);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ol>
 <pre><code>* format简写
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zhazhayang` WHERE created_at &gt;= date_format(NOW(),&apos;%Y-%m-%d&apos;);</span><br></pre></td></tr></table></figure>
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zhazhayang` WHERE created_at &gt;= date_format(NOW(),&apos;%Y-%m-%d&apos;);</span><br></pre></td></tr></table></figure>
 
 
 * *函数判断*
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zhazhayang` WHERE DATEDIFF(created_at,NOW()) =0;</span><br></pre></td></tr></table></figure>
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zhazhayang` WHERE DATEDIFF(created_at,NOW()) =0;</span><br></pre></td></tr></table></figure>
 
 
 * 时间戳判断
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zhazhayang` WHERE created_at BETWEEN (UNIX_TIMESTAMP(now()-86440)) AND now();</span><br></pre></td></tr></table></figure>
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM `zhazhayang` WHERE created_at BETWEEN (UNIX_TIMESTAMP(now()-86440)) AND now();</span><br></pre></td></tr></table></figure>
 </code></pre><ol start="4">
 <li><p>时间戳和日期的转换</p>
 <ul>
@@ -126,12 +126,12 @@
 </ul>
 </li>
 </ol>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select from_unixtime(1524022106);</span><br></pre></td></tr></table></figure>
+<pre><code>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select from_unixtime(1524022106);</span><br></pre></td></tr></table></figure>
 
 
 * 日期转时间戳
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select unix_timestamp(&apos;2018-04-16&apos;);</span><br></pre></td></tr></table></figure>
+    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select unix_timestamp(&apos;2018-04-16&apos;);</span><br></pre></td></tr></table></figure>
 </code></pre>
       
     </div>
