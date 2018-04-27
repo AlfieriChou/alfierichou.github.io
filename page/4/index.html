@@ -52,6 +52,64 @@
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="[layout]-request和response对象" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/03/request和response对象/">request和response对象</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/10/03/request和response对象/" class="article-date">
+  <time datetime="2017-10-03T13:15:36.000Z" itemprop="datePublished">2017-10-03</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node-js/">node.js</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="request和response对象"><a href="#request和response对象" class="headerlink" title="request和response对象"></a>request和response对象</h3><ul>
+<li>这段知识有点忘了，又重新学习了一下，然后决定整理一下。</li>
+</ul>
+<h5 id="Request-request-对象表示-HTTP-请求，包含了请求查询字符串，参数，内容，HTTP-头部等属性。"><a href="#Request-request-对象表示-HTTP-请求，包含了请求查询字符串，参数，内容，HTTP-头部等属性。" class="headerlink" title="Request    request 对象表示 HTTP 请求，包含了请求查询字符串，参数，内容，HTTP 头部等属性。"></a>Request    request 对象表示 HTTP 请求，包含了请求查询字符串，参数，内容，HTTP 头部等属性。</h5>
+        
+          <p class="article-more-link">
+            <a href="/2017/10/03/request和response对象/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+    
       <article id="[layoyt]-服务端停止nodejs进程" class="article article-type-[layoyt]" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -560,66 +618,6 @@
       <footer class="article-footer">
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-    
-      <article id="[layout]-远程主机用ssh连接遇到真实性检查以及解决方案" class="article article-type-[layout]" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/远程主机用ssh连接遇到真实性检查以及解决方案/">远程主机用ssh连接遇到真实性检查以及解决方案</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2017/08/16/远程主机用ssh连接遇到真实性检查以及解决方案/" class="article-date">
-  <time datetime="2017-08-16T08:32:21.000Z" itemprop="datePublished">2017-08-16</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="错误抛出"><a href="#错误抛出" class="headerlink" title="错误抛出"></a>错误抛出</h4><ul>
-<li>ssh配置遇到The authenticity of host ‘XXXX’ can’t be established</li>
-</ul>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ul>
-<li><p>修改/etc/ssh/ssh_config文件的配置，以后则不会再出现此问题</p>
-</li>
-<li><p>最后面添加：</p>
-</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">StrictHostKeyChecking no</span><br><span class="line">UserKnownHostsFile /dev/null</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
 
       </footer>
     
