@@ -52,6 +52,61 @@
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="[layout]-八段代码掌握Promise" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/09/八段代码掌握Promise/">八段代码掌握Promise</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/08/09/八段代码掌握Promise/" class="article-date">
+  <time datetime="2017-08-09T03:46:54.000Z" itemprop="datePublished">2017-08-09</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="promise的立即执行"><a href="#promise的立即执行" class="headerlink" title="promise的立即执行"></a>promise的立即执行</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(“create a promise”);</span><br><span class="line">	resolve(“success”);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(“after <span class="keyword">new</span> <span class="built_in">Promise</span>”);</span><br><span class="line"></span><br><span class="line">P.then(<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2017/08/09/八段代码掌握Promise/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+    
       <article id="[layout]-从零开始构建vuejs项目" class="article article-type-[layout]" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -529,64 +584,6 @@
         
           <p class="article-more-link">
             <a href="/2017/06/25/19个JavaScript常用的简写技术/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-    
-      <article id="[layout]-ajax笔记" class="article article-type-[layout]" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/28/ajax笔记/">ajax笔记</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2017/05/28/ajax笔记/" class="article-date">
-  <time datetime="2017-05-27T22:07:35.000Z" itemprop="datePublished">2017-05-28</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
-<li>现在在整理以前电脑上的一些笔记，发现了有很多有价值的东西，比如说，原生Ajax和jQuery-Ajax，feel jQuery-Ajax相对于原生Ajax而言，简直是一门艺术。</li>
-<li>那我下面就先说说jquery-Ajax吧！看看是怎么样的一门艺术。</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2017/05/28/ajax笔记/#more">Read More</a>
           </p>
         
       
