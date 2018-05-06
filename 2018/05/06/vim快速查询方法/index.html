@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>日志查询 - AlfieriChou</title>
+  <title>vim快速查询方法 - AlfieriChou</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言 在后台的开发过程中，有一个日志服务器是多么重要的一件事情。这就能让你的后台程序干了些什么活都给记录下来。以至于出现相应的问题时候能快速定位到出错点。">
+  <meta name="description" content="前言 最近，对日志操作有点多，之前有写过用grep方法来查询，但这个并不是一个好的方案。">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="日志查询">
-<meta property="og:url" content="http://github.com/AlfieriChou/2018/05/01/日志查询/index.html">
+<meta property="og:title" content="vim快速查询方法">
+<meta property="og:url" content="http://github.com/AlfieriChou/2018/05/06/vim快速查询方法/index.html">
 <meta property="og:site_name" content="AlfieriChou">
-<meta property="og:description" content="前言 在后台的开发过程中，有一个日志服务器是多么重要的一件事情。这就能让你的后台程序干了些什么活都给记录下来。以至于出现相应的问题时候能快速定位到出错点。">
+<meta property="og:description" content="前言 最近，对日志操作有点多，之前有写过用grep方法来查询，但这个并不是一个好的方案。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-01T13:46:03.000Z">
+<meta property="og:updated_time" content="2018-05-06T10:22:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="日志查询">
-<meta name="twitter:description" content="前言 在后台的开发过程中，有一个日志服务器是多么重要的一件事情。这就能让你的后台程序干了些什么活都给记录下来。以至于出现相应的问题时候能快速定位到出错点。">
+<meta name="twitter:title" content="vim快速查询方法">
+<meta name="twitter:description" content="前言 最近，对日志操作有点多，之前有写过用grep方法来查询，但这个并不是一个好的方案。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -56,7 +56,7 @@
     </div>
   </div>
 </header>
-    <section id="main" class="outer"><article id="[layout]-日志查询" class="article article-type-[layout]" itemscope itemprop="blogPost">
+    <section id="main" class="outer"><article id="[layout]-vim快速查询方法" class="article article-type-[layout]" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -64,15 +64,15 @@
         
   
     <h1 class="article-title" itemprop="name">
-      日志查询
+      vim快速查询方法
     </h1>
   
 
       </header>
     
     <div class="article-meta">
-      <a href="/2018/05/01/日志查询/" class="article-date">
-  <time datetime="2018-05-01T13:37:27.000Z" itemprop="datePublished">2018-05-01</time>
+      <a href="/2018/05/06/vim快速查询方法/" class="article-date">
+  <time datetime="2018-05-06T10:08:33.000Z" itemprop="datePublished">2018-05-06</time>
 </a>
       
   <div class="article-category">
@@ -84,23 +84,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
-<li>在后台的开发过程中，有一个日志服务器是多么重要的一件事情。这就能让你的后台程序干了些什么活都给记录下来。以至于出现相应的问题时候能快速定位到出错点。</li>
+<li>最近，对日志操作有点多，之前有写过用grep方法来查询，但这个并不是一个好的方案。</li>
 </ul>
 <a id="more"></a>
-<ul>
-<li>涉及到日志查询，那么就涉及到了相关命令</li>
-</ul>
 <ol>
-<li><p>less</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">less server-2018-05-01.log</span><br></pre></td></tr></table></figure>
+<li><p>通过/和？查询</p>
+<ul>
+<li>例如： 我们要查询super的时候就是 /super ?super，前者是从上往下检索，后者是从下往上检索。</li>
+</ul>
 </li>
-</ol>
-<ol start="2">
-<li><p>grep</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep 'phone' --color server-2018-05-01.log</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>cat/grep</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat server-2018-05-01.log grep INFO</span><br></pre></td></tr></table></figure>
+<li><p>光标停在某个单词上，通过shift+*来搜索，然后通过n和N进行上一个，下一个匹配。</p>
 </li>
 </ol>
 
@@ -119,17 +112,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/05/06/vim快速查询方法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-title"><span>&lt;</span>&nbsp;
-        
-          vim快速查询方法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/27/mysql数据库字母数字混合字段排序/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">mysql数据库字母数字混合字段排序&nbsp;<span>&gt;</span></div>
+    <a href="/2018/05/01/日志查询/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">日志查询&nbsp;<span>&gt;</span></div>
     </a>
   
 </nav>
