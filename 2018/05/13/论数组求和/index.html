@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="AlfieriChou">
 <meta property="og:description" content="前言 数组求和的方式有很多中，但是for循环是最简单粗暴的，而且，也比较直观，一眼就能看来是干什么用的，但是随着，技术能力的提升，for循环也是要慢慢抛弃的。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-13T06:30:53.000Z">
+<meta property="og:updated_time" content="2018-05-23T09:16:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="论数组求和">
 <meta name="twitter:description" content="前言 数组求和的方式有很多中，但是for循环是最简单粗暴的，而且，也比较直观，一眼就能看来是干什么用的，但是随着，技术能力的提升，for循环也是要慢慢抛弃的。">
@@ -103,6 +103,11 @@
 </li>
 </ul>
 <h5 id="法四"><a href="#法四" class="headerlink" title="法四"></a>法四</h5><ul>
+<li><p>reduce</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">runningTotal, currentValue</span>) </span>&#123; </span><br><span class="line">	<span class="keyword">return</span> runningTotal + currentValue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> sum = nums.reduce(add); </span><br><span class="line"><span class="built_in">console</span>.log(sum);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="法五"><a href="#法五" class="headerlink" title="法五"></a>法五</h5><ul>
 <li><p>递归</p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> array = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> n = array.length;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span> (<span class="params">array, n</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> n === <span class="number">0</span> ? <span class="number">0</span> : sum(arr, n<span class="number">-1</span>) + arr[n<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(sum(arr, n))</span><br></pre></td></tr></table></figure></li>
 </ul>
