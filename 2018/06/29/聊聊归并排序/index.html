@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>聊聊归并排序 - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言 果然，随着代码累积量越多，越注重算法和数据结构。之所以这样，是因为要产生比较有含金量的作品，而不是产生一堆无法维护，无法阅读的垃圾。这样，不仅自己看这难受，别人在维护你代码的时候。问候的话语肯定少不了。  归并排序，顾名思义，就是将已排序好的数组，合并到一起。所以叫归并排序。">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聊聊归并排序">
+<meta property="og:url" content="http://github.com/AlfieriChou/2018/06/29/聊聊归并排序/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="前言 果然，随着代码累积量越多，越注重算法和数据结构。之所以这样，是因为要产生比较有含金量的作品，而不是产生一堆无法维护，无法阅读的垃圾。这样，不仅自己看这难受，别人在维护你代码的时候。问候的话语肯定少不了。  归并排序，顾名思义，就是将已排序好的数组，合并到一起。所以叫归并排序。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-29T12:15:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="聊聊归并排序">
+<meta name="twitter:description" content="前言 果然，随着代码累积量越多，越注重算法和数据结构。之所以这样，是因为要产生比较有含金量的作品，而不是产生一堆无法维护，无法阅读的垃圾。这样，不仅自己看这难受，别人在维护你代码的时候。问候的话语肯定少不了。  归并排序，顾名思义，就是将已排序好的数组，合并到一起。所以叫归并排序。">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-聊聊归并排序" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      聊聊归并排序
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2018/06/29/聊聊归并排序/" class="article-date">
+  <time datetime="2018-06-29T11:51:47.000Z" itemprop="datePublished">2018-06-29</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li><p>果然，随着代码累积量越多，越注重算法和数据结构。之所以这样，是因为要产生比较有含金量的作品，而不是产生一堆无法维护，无法阅读的垃圾。这样，不仅自己看这难受，别人在维护你代码的时候。问候的话语肯定少不了。</p>
+</li>
+<li><p>归并排序，顾名思义，就是将已排序好的数组，合并到一起。所以叫归并排序。</p>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><p>算法思路</p>
+<ul>
+<li>把n个记录看成n个长度为1的有序子表</li>
+<li>进行两两归并使记录关键字有序，得到n/2个长度为2的有序子表</li>
+<li>重复第二步知道所有记录归并成一个长度为n的有序子表</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (arr.length &lt; <span class="number">2</span>) <span class="keyword">return</span> arr</span><br><span class="line">    <span class="keyword">const</span> mid = <span class="built_in">parseInt</span>(arr.length &gt;&gt;&gt; <span class="number">1</span>)</span><br><span class="line">    <span class="keyword">let</span> subLeft = mergeSort(arr.slice(<span class="number">0</span>, mid))</span><br><span class="line">    <span class="keyword">let</span> subRight = mergeSort(arr.slice(mid))</span><br><span class="line">    <span class="keyword">return</span> merge(subLeft, subRight)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span> (<span class="params">node1, node2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = []</span><br><span class="line">    <span class="keyword">while</span> (node1.length &gt; <span class="number">0</span> &amp;&amp; node2.length &gt; <span class="number">0</span>)</span><br><span class="line">        result.push(node1[<span class="number">0</span>] &lt; node2[<span class="number">0</span>] ? node1.shift() : node2.shift())</span><br><span class="line">    <span class="keyword">return</span> result.concat(node1.length? node1 : node2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/25/位移运算符/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">位移运算符&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
