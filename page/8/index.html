@@ -52,6 +52,61 @@
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="[layout]-ES6的import和export" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/21/ES6的import和export/">ES6的import和export</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/05/21/ES6的import和export/" class="article-date">
+  <time datetime="2017-05-21T01:03:15.000Z" itemprop="datePublished">2017-05-21</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/es6/">es6</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.export: 变量导出 不同位置js文件变量交互<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">在a.js中定义<span class="number">2</span>个变量</span><br><span class="line"><span class="keyword">var</span> name = <span class="string">'AlfieriChou'</span></span><br><span class="line"><span class="keyword">var</span> age = <span class="string">"20"</span></span><br><span class="line">name我们在b.js中如何使用到这两个定义好的变量呢？</span><br><span class="line">这时，我们只需要在a.js中添加<span class="keyword">export</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">'AlfieriChou'</span></span><br><span class="line"><span class="keyword">var</span> age = <span class="string">"20"</span></span><br><span class="line"><span class="comment">//添加以下代码</span></span><br><span class="line"><span class="keyword">export</span> &#123;name,age&#125;</span><br><span class="line">这样在b.js中就能使用了</span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/21/ES6的import和export/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+    
       <article id="[layout]-ES6类、属性和方法定义" class="article article-type-[layout]" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -547,61 +602,6 @@
       <footer class="article-footer">
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-    
-      <article id="[layout]-块级作用域" class="article article-type-[layout]" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/24/块级作用域/">块级作用域</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2017/04/24/块级作用域/" class="article-date">
-  <time datetime="2017-04-24T02:29:27.000Z" itemprop="datePublished">2017-04-24</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>看了别人写的作用域理解，我觉得这样的解释就是我所想要的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;0&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;1&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;2&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        var node = document.querySelectorAll(&apos;ul li&apos;)</span><br><span class="line">        for(var i = 0;i&lt;node.length;i++)&#123;</span><br><span class="line">            node[i].addEventListener(&apos;click&apos;,function()&#123;</span><br><span class="line">                alert(&apos;click&apos;+i)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
-        
-          <p class="article-more-link">
-            <a href="/2017/04/24/块级作用域/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 
       </footer>
     
