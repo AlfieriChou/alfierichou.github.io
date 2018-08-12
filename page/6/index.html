@@ -52,6 +52,69 @@
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="[layout]-Linux端口操作" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/04/Linux端口操作/">Linux端口操作</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/09/04/Linux端口操作/" class="article-date">
+  <time datetime="2017-09-04T07:27:13.000Z" itemprop="datePublished">2017-09-04</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>查看那些端口被打开 netstat -anp</li>
+<li><p>关闭端口：</p>
+<ul>
+<li>iptables -A INPUT -p tcp —drop 端口号 -j DROP</li>
+<li>iptables -A OUTPUT -p tcp —dport 端口号 -j DROP</li>
+</ul>
+</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/09/04/Linux端口操作/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+    
       <article id="[layout]-centos7用户管理" class="article article-type-[layout]" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -553,61 +616,6 @@
       <footer class="article-footer">
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-    
-      <article id="[layout]-基于node-js的问答平台" class="article article-type-[layout]" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/02/基于node-js的问答平台/">基于node.js的问答平台</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2017/07/02/基于node-js的问答平台/" class="article-date">
-  <time datetime="2017-07-02T15:13:01.000Z" itemprop="datePublished">2017-07-02</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/node-js/">node.js</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>其实我回来就应该先写这个的，但是一直不想动，懒功回家又发作了😔，还有想做全栈的话真的真的会很累。脑子会不够用！</p>
-        
-          <p class="article-more-link">
-            <a href="/2017/07/02/基于node-js的问答平台/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li></ul>
 
       </footer>
     
