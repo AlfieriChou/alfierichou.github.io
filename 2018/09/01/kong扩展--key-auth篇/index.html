@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>kong扩展--key-auth篇 - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言 微服务架构，也就是将服务按照功能或者其他一定的规则拆分，这样一来，也就需要一个集中管理API的平台。所以，kong、express-gateway等一系列的API gateway管理平台也就应运而生。 那么，API gateway应该具有哪些功能呢？ authentication logging rate-limiting security cache">
+<meta name="keywords" content="kong">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kong扩展--key-auth篇">
+<meta property="og:url" content="http://github.com/AlfieriChou/2018/09/01/kong扩展--key-auth篇/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="前言 微服务架构，也就是将服务按照功能或者其他一定的规则拆分，这样一来，也就需要一个集中管理API的平台。所以，kong、express-gateway等一系列的API gateway管理平台也就应运而生。 那么，API gateway应该具有哪些功能呢？ authentication logging rate-limiting security cache">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-01T14:07:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="kong扩展--key-auth篇">
+<meta name="twitter:description" content="前言 微服务架构，也就是将服务按照功能或者其他一定的规则拆分，这样一来，也就需要一个集中管理API的平台。所以，kong、express-gateway等一系列的API gateway管理平台也就应运而生。 那么，API gateway应该具有哪些功能呢？ authentication logging rate-limiting security cache">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-kong扩展--key-auth篇" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      kong扩展--key-auth篇
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2018/09/01/kong扩展--key-auth篇/" class="article-date">
+  <time datetime="2018-09-01T13:35:36.000Z" itemprop="datePublished">2018-09-01</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/kong/">kong</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li>微服务架构，也就是将服务按照功能或者其他一定的规则拆分，这样一来，也就需要一个集中管理API的平台。所以，kong、express-gateway等一系列的API gateway管理平台也就应运而生。</li>
+<li>那么，API gateway应该具有哪些功能呢？<ul>
+<li>authentication</li>
+<li>logging</li>
+<li>rate-limiting</li>
+<li>security</li>
+<li>cache</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li>配置kong环境就不说了，你可以选择docker、kubernetes以及安装包安装。</li>
+<li>本文所采用的是社区版（专业版太贵了，提供的功能也非常全面）</li>
+</ul>
+<h4 id="第一步——创建服务"><a href="#第一步——创建服务" class="headerlink" title="第一步——创建服务"></a>第一步——创建服务</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X POST --url http://localhost:8001/services --data <span class="string">"name=alfieri"</span> --data <span class="string">"url=https://knex.alfierichou.com"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里采用的cli的方式创建服务，当然，你也可以采用postman去模拟请求，或者GitHub开源的第三方dashboard。</li>
+</ul>
+<h4 id="第二步——创建路由"><a href="#第二步——创建路由" class="headerlink" title="第二步——创建路由"></a>第二步——创建路由</h4><ul>
+<li>给alfieri创建路由，为了方便测试，就没有加入path。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X POST --url http://localhost:8001/services/alfieri/routes --data <span class="string">"hosts[]=knex.alfierichou.com”</span></span><br></pre></td></tr></table></figure>
+<h4 id="第三布——查看路由是否能跳转"><a href="#第三布——查看路由是否能跳转" class="headerlink" title="第三布——查看路由是否能跳转"></a>第三布——查看路由是否能跳转</h4><ul>
+<li>调试采用的8000端口，就是转发接口。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X GET --url http://localhost:8000 --header <span class="string">"Host: knex.alfierichou.com”</span></span><br></pre></td></tr></table></figure>
+<h4 id="第四步——添加auth类型"><a href="#第四步——添加auth类型" class="headerlink" title="第四步——添加auth类型"></a>第四步——添加auth类型</h4><ul>
+<li><p>这里采用的是key-auth认证</p>
+<ul>
+<li><p>注册扩展</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X POST --url http://localhost:8001/services/knex/plugins/ --data <span class="string">'name=key-auth'</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>* 测试auth是否添加
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X GET --url http://localhost:8000 --header <span class="string">'Host: knex.alfierichou.com'</span></span><br></pre></td></tr></table></figure>
+
+
+* 返回，如果是Unauthorized，就说明配置成功，因为，key需要Consumer才能颁发，所以接下来就要开始注册Consumer。
+</code></pre><h4 id="第五步——注册Consumer"><a href="#第五步——注册Consumer" class="headerlink" title="第五步——注册Consumer"></a>第五步——注册Consumer</h4><ul>
+<li>添加Consumer</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X POST --url http://localhost:8001/consumers --data <span class="string">"username=alfieri"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>颁发key（话说，什么东西标上supreme，就会默默的边牛逼，所以，就添加个supreme的key）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X POST --url http://localhost:8001/consumers/alfieri/key-auth/ --data <span class="string">'key=supreme'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>测试是否配置成功</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X GET --url http://localhost:8000 --header <span class="string">"Host: knex.alfierichou.com"</span> --Header <span class="string">"apikey: supreme"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果返回正常的结果，不是Unauthorized，就说明，已经配置成功。</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>key-auth、jwt和oauth等身份验证，原理都是一样，具体配置可以看官方文档。</li>
+</ul>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kong/">kong</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/08/12/Envoy还是Nginx/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Envoy还是Nginx&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
