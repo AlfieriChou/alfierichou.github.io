@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="AlfieriChou">
 <meta property="og:description" content="前言 微服务架构，也就是将服务按照功能或者其他一定的规则拆分，这样一来，也就需要一个集中管理API的平台。所以，kong、express-gateway等一系列的API gateway管理平台也就应运而生。 那么，API gateway应该具有哪些功能呢？ authentication logging rate-limiting security cache">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-01T14:11:47.000Z">
+<meta property="og:updated_time" content="2018-09-01T14:15:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kong扩展--key-auth篇">
 <meta name="twitter:description" content="前言 微服务架构，也就是将服务按照功能或者其他一定的规则拆分，这样一来，也就需要一个集中管理API的平台。所以，kong、express-gateway等一系列的API gateway管理平台也就应运而生。 那么，API gateway应该具有哪些功能呢？ authentication logging rate-limiting security cache">
@@ -113,20 +113,19 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X GET --url http://localhost:8000 --header <span class="string">"Host: knex.alfierichou.com”</span></span><br></pre></td></tr></table></figure>
 <h4 id="第四步——添加auth类型"><a href="#第四步——添加auth类型" class="headerlink" title="第四步——添加auth类型"></a>第四步——添加auth类型</h4><ul>
 <li><p>这里采用的是key-auth认证</p>
-<ol>
-<li><p>注册扩展</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X POST --url http://localhost:8001/services/knex/plugins/ --data <span class="string">'name=key-auth'</span></span><br></pre></td></tr></table></figure>
 </li>
-</ol>
+<li><p>注册扩展</p>
 </li>
 </ul>
-<pre><code>2. 测试auth是否添加
-
-    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X GET --url http://localhost:8000 --header <span class="string">'Host: knex.alfierichou.com'</span></span><br></pre></td></tr></table></figure>
-
-
-3. 返回，如果是Unauthorized，就说明配置成功，因为，key需要Consumer才能颁发，所以接下来就要开始注册Consumer。
-</code></pre><h4 id="第五步——注册Consumer"><a href="#第五步——注册Consumer" class="headerlink" title="第五步——注册Consumer"></a>第五步——注册Consumer</h4><ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X POST --url http://localhost:8001/services/knex/plugins/ --data <span class="string">'name=key-auth'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>测试auth是否添加</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X GET --url http://localhost:8000 --header <span class="string">'Host: knex.alfierichou.com'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>返回，如果是Unauthorized，就说明配置成功，因为，key需要Consumer才能颁发，所以接下来就要开始注册Consumer。</li>
+</ul>
+<h4 id="第五步——注册Consumer"><a href="#第五步——注册Consumer" class="headerlink" title="第五步——注册Consumer"></a>第五步——注册Consumer</h4><ul>
 <li>添加Consumer</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i -X POST --url http://localhost:8001/consumers --data <span class="string">"username=alfieri"</span></span><br></pre></td></tr></table></figure>
