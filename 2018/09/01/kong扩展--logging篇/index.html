@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="AlfieriChou">
 <meta property="og:description" content="前言 上篇已经说过了key-auth。接下来就说说kong的logging。 kong官方提供了TCP、UDP、HTTP、File、StatsD、StatsD Advanced、Syslog和Loggly。其中StatsD Advanced需要企业版才能使用。 我选择的是其中的File、StatsD以及Syslog。其中，File打印的是http请求的日志，StatsD打印请求和返回日志，Sysl">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-01T15:10:45.000Z">
+<meta property="og:updated_time" content="2018-09-02T01:34:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="kong扩展--logging篇">
 <meta name="twitter:description" content="前言 上篇已经说过了key-auth。接下来就说说kong的logging。 kong官方提供了TCP、UDP、HTTP、File、StatsD、StatsD Advanced、Syslog和Loggly。其中StatsD Advanced需要企业版才能使用。 我选择的是其中的File、StatsD以及Syslog。其中，File打印的是http请求的日志，StatsD打印请求和返回日志，Sysl">
@@ -107,30 +107,30 @@
 <li><p>给某服务添加日志扩展（这里采用的是服务的id）</p>
 </li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://localhost:8001/services/FEABFF1E-95EE-427D-B24C-82C4F763D3CA/plugins --data <span class="string">"name= statsd"</span> --data <span class="string">"config.host=knex.alfierichou.com"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://localhost:8001/services/FEABFF1E-95EE-427D-B24C-82C4F763D3CA/plugins --data <span class="string">"name=statsd"</span> --data <span class="string">"config.host=knex.alfierichou.com"</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>给某路由添加日志扩展（这里采用的是路由的id）</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://localhost:8001/routes/0C0FB9D2-1089-4D12-A110-DDD24ED93086/plugins --data <span class="string">"name= statsd"</span> --data <span class="string">"config.host=knex.alfierichou.com"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://localhost:8001/routes/0C0FB9D2-1089-4D12-A110-DDD24ED93086/plugins --data <span class="string">"name=statsd"</span> --data <span class="string">"config.host=knex.alfierichou.com"</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>添加consumer_id</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://kong:8001/plugins --data <span class="string">"name=file-log"</span> --data <span class="string">"consumer_id=&#123;consumer_id&#125;"</span> --data <span class="string">"config.host=knex.alfierichou.com"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://kong:8001/plugins --data <span class="string">"name=statsd"</span> --data <span class="string">"consumer_id=&#123;consumer_id&#125;"</span> --data <span class="string">"config.host=knex.alfierichou.com"</span></span><br></pre></td></tr></table></figure>
 <h4 id="第三部分——Syslog"><a href="#第三部分——Syslog" class="headerlink" title="第三部分——Syslog"></a>第三部分——Syslog</h4><ul>
 <li><p>系统日志，这个日志主要是为了监视kong程序运行时候有没有出现Error，并且记录到日志目录。</p>
 </li>
 <li><p>给某服务添加日志扩展（这里采用的是服务的id）</p>
 </li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://localhost:8001/services/FEABFF1E-95EE-427D-B24C-82C4F763D3CA/plugins --data <span class="string">"name= syslog"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://localhost:8001/services/FEABFF1E-95EE-427D-B24C-82C4F763D3CA/plugins --data <span class="string">"name=syslog"</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>给某路由添加日志扩展（这里采用的是路由的id）</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://localhost:8001/routes/0C0FB9D2-1089-4D12-A110-DDD24ED93086/plugins --data <span class="string">"name= syslog"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://localhost:8001/routes/0C0FB9D2-1089-4D12-A110-DDD24ED93086/plugins --data <span class="string">"name=syslog"</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>添加consumer_id</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://kong:8001/plugins --data <span class="string">"name= syslog"</span> --data <span class="string">"consumer_id=&#123;consumer_id&#125;"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST http://kong:8001/plugins --data <span class="string">"name=syslog"</span> --data <span class="string">"consumer_id=&#123;consumer_id&#125;"</span></span><br></pre></td></tr></table></figure>
 <h4 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h4><ul>
 <li>有这三个日志功能基本已经完全满足API gateway的日志功能。同时，也监控了http，request，response和sys是否出现问题。也利于企业用来分析某些接口的请求的内容和返回内容。</li>
 </ul>
