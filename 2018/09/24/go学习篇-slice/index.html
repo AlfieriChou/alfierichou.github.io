@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="AlfieriChou">
 <meta property="og:description" content="前言 最近，在学习golang和typescript。发现一个问题，弱类型语言都很容易上手，比如说JavaScript。而强类型语言呢！都有一个共性，写起来规则性太强了。觉得没有弱类型舒适顺畅。 下面就来聊聊slice吧">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-24T11:38:36.000Z">
+<meta property="og:updated_time" content="2018-09-24T11:43:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="go学习篇-slice">
 <meta name="twitter:description" content="前言 最近，在学习golang和typescript。发现一个问题，弱类型语言都很容易上手，比如说JavaScript。而强类型语言呢！都有一个共性，写起来规则性太强了。觉得没有弱类型舒适顺畅。 下面就来聊聊slice吧">
@@ -92,18 +92,19 @@
 <li>切片，为什么会有这么一个称号呢，很简单，slice就是用来将数组分隔成一块一块的。所以才有了这个称号。</li>
 </ul>
 <h4 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h4><ul>
-<li><p>在go里边，slice有三个参数，一个是元素的类型比如说float64<br>，一个是长度，还有一个就是类型的长度。</p>
+<li>在go里边，slice有三个参数，一个是元素的类型比如说float64，一个是长度，还有一个就是类型的长度。</li>
+</ul>
 <ol>
 <li><p>方式一 直接创建切片</p>
  <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x := <span class="built_in">make</span>([]<span class="keyword">float64</span>, <span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<ol start="2">
+<li><p>方式二 通过数组创建切片</p>
+ <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr := [<span class="number">5</span>]<span class="keyword">float64</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</span><br><span class="line">x := arr[<span class="number">0</span>:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<pre><code>2. 方式二 通过数组创建切片
-
-    <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr := [<span class="number">5</span>]<span class="keyword">float64</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</span><br><span class="line">x := arr[<span class="number">0</span>:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-</code></pre><h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><ul>
+</ol>
+<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><ul>
 <li><p>append</p>
   <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Append</span><span class="params">()</span></span> &#123;</span><br><span class="line">	arr := []<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">	appendArr := <span class="built_in">append</span>(arr, <span class="number">4</span>)</span><br><span class="line">	fmt.Println(arr, appendArr)</span><br><span class="line">&#125;	<span class="comment">// [1 2 3] [1 2 3 4]</span></span><br></pre></td></tr></table></figure>
 </li>
