@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>go学习篇-slice - AlfieriChou</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言 最近，在学习golang和typescript。发现一个问题，弱类型语言都很容易上手，比如说JavaScript。而强类型语言呢！都有一个共性，写起来规则性太强了。觉得没有弱类型舒适顺畅。 下面就来聊聊slice吧">
+<meta name="keywords" content="go">
+<meta property="og:type" content="article">
+<meta property="og:title" content="go学习篇-slice">
+<meta property="og:url" content="http://github.com/AlfieriChou/2018/09/24/go学习篇-slice/index.html">
+<meta property="og:site_name" content="AlfieriChou">
+<meta property="og:description" content="前言 最近，在学习golang和typescript。发现一个问题，弱类型语言都很容易上手，比如说JavaScript。而强类型语言呢！都有一个共性，写起来规则性太强了。觉得没有弱类型舒适顺畅。 下面就来聊聊slice吧">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-09-24T11:38:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="go学习篇-slice">
+<meta name="twitter:description" content="前言 最近，在学习golang和typescript。发现一个问题，弱类型语言都很容易上手，比如说JavaScript。而强类型语言呢！都有一个共性，写起来规则性太强了。觉得没有弱类型舒适顺畅。 下面就来聊聊slice吧">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://github.com/AlfieriChou"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="[layout]-go学习篇-slice" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      go学习篇-slice
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2018/09/24/go学习篇-slice/" class="article-date">
+  <time datetime="2018-09-24T11:17:01.000Z" itemprop="datePublished">2018-09-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/go/">go</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li>最近，在学习golang和typescript。发现一个问题，弱类型语言都很容易上手，比如说JavaScript。而强类型语言呢！都有一个共性，写起来规则性太强了。觉得没有弱类型舒适顺畅。</li>
+<li>下面就来聊聊slice吧</li>
+</ul>
+<a id="more"></a>
+<h4 id="slice是什么"><a href="#slice是什么" class="headerlink" title="slice是什么"></a>slice是什么</h4><ul>
+<li>切片，为什么会有这么一个称号呢，很简单，slice就是用来将数组分隔成一块一块的。所以才有了这个称号。</li>
+</ul>
+<h4 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h4><ul>
+<li><p>在go里边，slice有三个参数，一个是元素的类型比如说float64<br>，一个是长度，还有一个就是类型的长度。</p>
+<ol>
+<li><p>方式一 直接创建切片</p>
+ <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x := <span class="built_in">make</span>([]<span class="keyword">float64</span>, <span class="number">5</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<pre><code>2. 方式二 通过数组创建切片
+
+    <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arr := [<span class="number">5</span>]<span class="keyword">float64</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;</span><br><span class="line">x := arr[<span class="number">0</span>:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><ul>
+<li><p>append</p>
+  <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Append</span><span class="params">()</span></span> &#123;</span><br><span class="line">	arr := []<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">	appendArr := <span class="built_in">append</span>(arr, <span class="number">4</span>)</span><br><span class="line">	fmt.Println(arr, appendArr)</span><br><span class="line">&#125;	<span class="comment">// [1 2 3] [1 2 3 4]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>copy</p>
+  <figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Map</span><span class="params">()</span></span> &#123;</span><br><span class="line">	arr := []<span class="keyword">int</span>&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br><span class="line">	slice := <span class="built_in">make</span>([]<span class="keyword">int</span>, <span class="number">2</span>)</span><br><span class="line">	<span class="built_in">copy</span>(arr, slice)</span><br><span class="line">	fmt.Println(arr, slice)</span><br><span class="line">&#125;	<span class="comment">// [1 2 3] [1 2]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><ul>
+<li>接下来，一段时间都会写go或者是ts的文章。</li>
+</ul>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/01/kong扩展--logging篇/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">kong扩展--logging篇&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+
+
+
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 AlfieriChou&nbsp;
+      <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备18006712号-1</a>
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
