@@ -14,7 +14,7 @@
 <meta property="og:description" content="前言 protobuf——Protocol Buffers，Google大佬推出的新玩意。我们在写javascript的时候，觉得json是非常方便的。而protobuf在go中同样也是如此。 protobuf——结构即文件。我们在定义protobuf的时候，后缀都是以.proto结尾。所以，protobuf也是一种文件。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://yami.io/content/images/2017/01/protobuf-1-1.png">
-<meta property="og:updated_time" content="2018-10-08T13:18:43.000Z">
+<meta property="og:updated_time" content="2018-10-08T13:21:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="go学习篇-protobuf">
 <meta name="twitter:description" content="前言 protobuf——Protocol Buffers，Google大佬推出的新玩意。我们在写javascript的时候，觉得json是非常方便的。而protobuf在go中同样也是如此。 protobuf——结构即文件。我们在定义protobuf的时候，后缀都是以.proto结尾。所以，protobuf也是一种文件。">
@@ -100,20 +100,20 @@
 <h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p><img src="https://yami.io/content/images/2017/01/protobuf-1-1.png" alt="url"></p>
 <h4 id="protobuf生成工具"><a href="#protobuf生成工具" class="headerlink" title="protobuf生成工具"></a>protobuf生成工具</h4><ul>
 <li><p>这里，我推荐使用docker镜像的形式（gfw牛逼），当然，还有另外一个原因——就是简单，无脑操作。至于不会用docker的，那我只能说，你牛逼。告辞，再见。</p>
-<ul>
+</li>
 <li><p>pull镜像</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull znly/protoc</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<ul>
+<li><p>转换文件</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm -v $(<span class="built_in">pwd</span>):$(<span class="built_in">pwd</span>) -w $(<span class="built_in">pwd</span>) znly/protoc --go_out=. -I. person.proto</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<pre><code>* 转换文件
-
-    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --rm -v $(<span class="built_in">pwd</span>):$(<span class="built_in">pwd</span>) -w $(<span class="built_in">pwd</span>) znly/protoc --go_out=. -I. person.proto</span><br></pre></td></tr></table></figure>
-
-
-* [demo](https://github.com/AlfieriChou/go-demo/tree/master/protocal-buffer)
-</code></pre><h4 id="看看如何工作的"><a href="#看看如何工作的" class="headerlink" title="看看如何工作的"></a>看看如何工作的</h4><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  alfieri := &amp;Person&#123;</span><br><span class="line">    Name: <span class="string">"Alfieri"</span>,</span><br><span class="line">    Age: <span class="number">100</span>,</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  data, err := proto.Marshal(alfieri)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    log.Fatal(<span class="string">"Marshal Error: "</span>, err)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  fmt.Println(data)</span><br><span class="line"></span><br><span class="line">  newAlfieri := &amp;Person&#123;&#125;</span><br><span class="line">  err = proto.Unmarshal(data, newAlfieri)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    log.Fatal(<span class="string">"Marshal Error: "</span>, err)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  fmt.Println(newAlfieri.GetAge())</span><br><span class="line">  fmt.Println(newAlfieri.GetName())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://github.com/AlfieriChou/go-demo/tree/master/protocal-buffer">demo</a></li>
+</ul>
+<h4 id="看看如何工作的"><a href="#看看如何工作的" class="headerlink" title="看看如何工作的"></a>看看如何工作的</h4><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  alfieri := &amp;Person&#123;</span><br><span class="line">    Name: <span class="string">"Alfieri"</span>,</span><br><span class="line">    Age: <span class="number">100</span>,</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  data, err := proto.Marshal(alfieri)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    log.Fatal(<span class="string">"Marshal Error: "</span>, err)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  fmt.Println(data)</span><br><span class="line"></span><br><span class="line">  newAlfieri := &amp;Person&#123;&#125;</span><br><span class="line">  err = proto.Unmarshal(data, newAlfieri)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    log.Fatal(<span class="string">"Marshal Error: "</span>, err)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  fmt.Println(newAlfieri.GetAge())</span><br><span class="line">  fmt.Println(newAlfieri.GetName())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>上面就是需要运行的代码，好接下来我们go一下。</li>
 </ul>
