@@ -52,6 +52,66 @@
   </div>
 </header>
     <section id="main" class="outer">
+      <article id="[layout]-远程主机用ssh连接遇到真实性检查以及解决方案" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/16/远程主机用ssh连接遇到真实性检查以及解决方案/">远程主机用ssh连接遇到真实性检查以及解决方案</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/08/16/远程主机用ssh连接遇到真实性检查以及解决方案/" class="article-date">
+  <time datetime="2017-08-16T08:32:21.000Z" itemprop="datePublished">2017-08-16</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="错误抛出"><a href="#错误抛出" class="headerlink" title="错误抛出"></a>错误抛出</h4><ul>
+<li>ssh配置遇到The authenticity of host ‘XXXX’ can’t be established</li>
+</ul>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ul>
+<li><p>修改/etc/ssh/ssh_config文件的配置，以后则不会再出现此问题</p>
+</li>
+<li><p>最后面添加：</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">StrictHostKeyChecking no</span><br><span class="line">UserKnownHostsFile /dev/null</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+    
       <article id="[layout]-八段代码掌握Promise" class="article article-type-[layout]" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -553,61 +613,6 @@
 
 
     
-      <article id="[layout]-19个JavaScript常用的简写技术" class="article article-type-[layout]" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/25/19个JavaScript常用的简写技术/">19个JavaScript常用的简写技术</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2017/06/25/19个JavaScript常用的简写技术/" class="article-date">
-  <time datetime="2017-06-25T01:12:09.000Z" itemprop="datePublished">2017-06-25</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>看到了一篇优质文章，以后肯定会用得着，所以就先复制到我的博客以后慢慢研究，优化代码。</p>
-        
-          <p class="article-more-link">
-            <a href="/2017/06/25/19个JavaScript常用的简写技术/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-    
       <nav id="page-nav">
         <a class="extend prev" rel="prev" href="/page/6/">&laquo; nav.prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/">nav.next &raquo;</a>
       </nav>
@@ -616,7 +621,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2018 AlfieriChou&nbsp;
+      &copy; 2019 AlfieriChou&nbsp;
       <a href="http://www.miitbeian.gov.cn/" target="_blank">湘ICP备18006712号-1</a>
     </div>
   </div>
