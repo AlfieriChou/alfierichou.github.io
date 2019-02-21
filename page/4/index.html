@@ -52,69 +52,6 @@
   </div>
 </header>
     <section id="main" class="outer">
-      <article id="[layout]-lodash与es6的联系" class="article article-type-[layout]" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/02/lodash与es6的联系/">lodash与es6的联系</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      <a href="/2018/04/02/lodash与es6的联系/" class="article-date">
-  <time datetime="2018-04-02T03:09:33.000Z" itemprop="datePublished">2018-04-02</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/node-js/">node.js</a>
-  </div>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="lodash-amp-ES6"><a href="#lodash-amp-ES6" class="headerlink" title="lodash&amp;ES6"></a>lodash&amp;ES6</h3><ul>
-<li><p>Map Filter Reduce</p>
-<ul>
-<li><p>搭配箭头函数使用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">_.map([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123; <span class="keyword">return</span> n * <span class="number">3</span>; &#125;);</span><br><span class="line"><span class="comment">// [3, 6, 9]</span></span><br><span class="line">_.reduce([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="function"><span class="keyword">function</span>(<span class="params">total, n</span>) </span>&#123; <span class="keyword">return</span> total + n; &#125;, <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 6</span></span><br><span class="line">_.filter([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123; <span class="keyword">return</span> n &lt;= <span class="number">2</span>; &#125;);</span><br><span class="line"><span class="comment">// [1, 2]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6写法</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].map(<span class="function"><span class="params">n</span> =&gt;</span> n * <span class="number">3</span>);</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].reduce(<span class="function">(<span class="params">total, n</span>) =&gt;</span> total + n);</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].filter(<span class="function"><span class="params">n</span> =&gt;</span> n &lt;= <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2018/04/02/lodash与es6的联系/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    
-    
-      <footer class="article-footer">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li></ul>
-
-      </footer>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-    
       <article id="[layout]-nginx配置" class="article article-type-[layout]" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -604,6 +541,63 @@
         
           <p class="article-more-link">
             <a href="/2017/12/13/nodejs将Excel中的数据导入MongoDB/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    
+    
+      <footer class="article-footer">
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li></ul>
+
+      </footer>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+    
+      <article id="[layout]-nodejs将MongoDB中的数据导出到Excel" class="article article-type-[layout]" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/13/nodejs将MongoDB中的数据导出到Excel/">nodejs将MongoDB中的数据导出到Excel</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/12/13/nodejs将MongoDB中的数据导出到Excel/" class="article-date">
+  <time datetime="2017-12-13T06:03:21.000Z" itemprop="datePublished">2017-12-13</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/node-js/">node.js</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><ul>
+<li>MongoDB中的数据，导出到Excel。</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2017/12/13/nodejs将MongoDB中的数据导出到Excel/#more">Read More</a>
           </p>
         
       
